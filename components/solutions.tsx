@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { ScrollFadeIn, ScrollStaggerContainer, StaggerChild } from '@/components/scroll-animations';
 import { solutions, type SolutionIcon } from '@/lib/site';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 const iconMap: Record<SolutionIcon, LucideIcon> = {
   code: Code2,
@@ -63,7 +64,7 @@ export function Solutions() {
                       <Icon size={26} strokeWidth={1.75} aria-hidden />
                     </div>
 
-                    <h3 className="relative z-10 text-xl font-semibold mb-3 tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+                    <h3 className={`relative z-10 text-xl font-semibold mb-3 tracking-tight text-foreground ${brandHoverClasses.cardTitle}`}>
                       {solution.title}
                     </h3>
                     <p className="relative z-10 text-sm leading-relaxed text-foreground/65 mb-6">
@@ -121,7 +122,7 @@ export function Solutions() {
             </div>
             <Button
               asChild
-              className="relative shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25"
+              className={`relative shrink-0 bg-primary text-primary-foreground shadow-lg shadow-primary/25 ${brandHoverClasses.button}`}
             >
               <Link href="/#contact">Book a consultation</Link>
             </Button>

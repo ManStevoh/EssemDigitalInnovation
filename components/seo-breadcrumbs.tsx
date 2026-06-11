@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { BreadcrumbJsonLd } from '@/components/json-ld';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 export type BreadcrumbItem = { name: string; path: string };
 
@@ -26,7 +27,7 @@ export function SeoBreadcrumbs({ items }: SeoBreadcrumbsProps) {
                     {item.name}
                   </span>
                 ) : (
-                  <Link href={item.path} className="hover:text-primary transition-colors">
+                  <Link href={item.path} className={brandHoverClasses.link}>
                     {item.name}
                   </Link>
                 )}

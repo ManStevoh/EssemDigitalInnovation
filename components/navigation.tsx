@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { navLinks } from '@/lib/site';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                className={`px-3 py-2 text-sm font-medium text-foreground/70 ${brandHoverClasses.link}`}
               >
                 {link.label}
               </Link>
@@ -29,7 +30,7 @@ export function Navigation() {
           </div>
 
           <div className="hidden md:block shrink-0">
-            <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Button asChild size="sm" className={`bg-primary text-primary-foreground ${brandHoverClasses.button}`}>
               <Link href="/#contact">Contact us</Link>
             </Button>
           </div>
@@ -50,14 +51,14 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-3 py-2 text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                className={`block px-3 py-2 text-sm font-medium text-foreground/70 ${brandHoverClasses.link}`}
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
             <div className="px-3 pt-4">
-              <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button asChild className={`w-full bg-primary text-primary-foreground ${brandHoverClasses.button}`}>
                 <Link href="/#contact" onClick={() => setIsOpen(false)}>
                   Contact us
                 </Link>

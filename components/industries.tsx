@@ -2,6 +2,7 @@
 
 import { ScrollFadeIn, ScrollStaggerContainer, StaggerChild } from '@/components/scroll-animations';
 import { industries } from '@/lib/site';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 export function Industries() {
   return (
@@ -26,7 +27,7 @@ export function Industries() {
             {industries.map((industry) => (
               <StaggerChild key={industry.title}>
                 <article className="industry-card group cursor-default">
-                  <h3 className="mb-2 text-base font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+                    <h3 className={`mb-2 text-base font-semibold tracking-tight text-foreground ${brandHoverClasses.cardTitle}`}>
                     {industry.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:text-foreground/80">

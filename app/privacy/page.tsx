@@ -41,8 +41,8 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-semibold text-foreground mb-3">Information we collect</h2>
               <p className="mb-3">When you use our contact form, we may collect:</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Your name and email address</li>
-                <li>Your message and any details you choose to share about your project</li>
+                <li>Your name, email, project type, budget range, timeline, and message</li>
+                <li>Whether you opted in to marketing communications (optional checkbox)</li>
                 <li>Basic technical data such as browser type (via standard server logs)</li>
               </ul>
             </section>
@@ -72,9 +72,45 @@ export default function PrivacyPage() {
             </section>
 
             <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">Newsletter & marketing</h2>
+              <p className="mb-3">
+                If you subscribe to our newsletter, we collect your email address and record your
+                explicit consent to receive marketing communications from us, including:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 mb-3">
+                <li>Newsletters and industry insights</li>
+                <li>Service updates and announcements</li>
+                <li>Promotional offers related to our digital services</li>
+              </ul>
+              <p className="mb-3">
+                We store the date and source of your consent. Marketing emails are sent through our
+                email platform (such as Brevo or Mailchimp). We do not sell your email address to
+                third parties.
+              </p>
+              <p>
+                You can unsubscribe at any time using the link in each email or by contacting us at{' '}
+                <a href={`mailto:${siteConfig.email}`} className="text-primary hover:underline">
+                  {siteConfig.email}
+                </a>
+                .
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-foreground mb-3">Cookie consent vs marketing consent</h2>
+              <p>
+                Accepting analytics cookies on our cookie banner allows us to understand how visitors
+                use the website. It does <strong className="text-foreground">not</strong> automatically
+                add you to marketing lists. Marketing emails are only sent if you separately opt in
+                via the newsletter form or another explicit signup.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">How we use your information</h2>
               <ul className="list-disc pl-5 space-y-1">
                 <li>To respond to your inquiries and provide requested services</li>
+                <li>To send newsletters and marketing communications you have opted into</li>
                 <li>To improve our website and communications</li>
                 <li>To comply with legal obligations where applicable</li>
               </ul>

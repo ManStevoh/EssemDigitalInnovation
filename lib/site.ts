@@ -119,6 +119,33 @@ export const coreValues: ReadonlyArray<{
   },
 ] as const;
 
+export const projectTypes = [
+  'Custom Software Development',
+  'Mobile App Development',
+  'ICT Support & Infrastructure',
+  'Digital Marketing & Social Media',
+  'Website or Web Application',
+  'Other / Not sure yet',
+] as const;
+
+export const budgetRanges = [
+  'Under KES 100,000',
+  'KES 100,000 – 500,000',
+  'KES 500,000 – 1,000,000',
+  'KES 1,000,000 – 3,000,000',
+  'Above KES 3,000,000',
+  'Prefer to discuss',
+] as const;
+
+export const projectTimelines = [
+  'ASAP / Urgent',
+  'Within 1 month',
+  '1–3 months',
+  '3–6 months',
+  '6+ months',
+  'Flexible / exploring options',
+] as const;
+
 export const brand = {
   logo: '/brand/logo.png',
   icon: '/brand/favicon.png',

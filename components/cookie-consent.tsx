@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dialog';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import { brandHoverClasses } from '@/lib/brand-guide';
 import {
   COOKIE_CONSENT_OPEN_EVENT,
   getCookieConsent,
@@ -112,7 +113,7 @@ export function CookieConsent() {
               <Button
                 type="button"
                 size="sm"
-                className="w-full bg-primary hover:bg-primary/90 sm:w-auto"
+                className={`w-full bg-primary text-primary-foreground sm:w-auto ${brandHoverClasses.button}`}
                 onClick={() => applyConsent(true)}
               >
                 Accept all

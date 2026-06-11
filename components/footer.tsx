@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { CookieSettingsLink } from '@/components/cookie-settings-link';
 import { Logo } from '@/components/logo';
+import { NewsletterSignup } from '@/components/newsletter-signup';
 import { siteConfig, solutions } from '@/lib/site';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -22,7 +24,7 @@ export function Footer() {
             <ul className="space-y-2">
               {solutions.slice(0, 6).map((item) => (
                 <li key={item.title}>
-                  <Link href="/#solutions" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="/#solutions" className={`text-sm text-muted-foreground ${brandHoverClasses.mutedLink}`}>
                     {item.title}
                   </Link>
                 </li>
@@ -45,9 +47,9 @@ export function Footer() {
               ].map((item) => (
                 <li key={item.label}>
                   {'isCookieSettings' in item && item.isCookieSettings ? (
-                    <CookieSettingsLink className="text-sm text-muted-foreground hover:text-foreground transition-colors" />
+                    <CookieSettingsLink className={`text-sm text-muted-foreground ${brandHoverClasses.mutedLink}`} />
                   ) : (
-                    <Link href={item.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    <Link href={item.href} className={`text-sm text-muted-foreground ${brandHoverClasses.mutedLink}`}>
                       {item.label}
                     </Link>
                   )}
@@ -60,12 +62,12 @@ export function Footer() {
             <h4 className="font-semibold mb-4 text-foreground">Contact</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-foreground transition-colors">
+                <a href={`mailto:${siteConfig.email}`} className={brandHoverClasses.mutedLink}>
                   {siteConfig.email}
                 </a>
               </li>
               <li>
-                <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className="hover:text-foreground transition-colors">
+                <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className={brandHoverClasses.mutedLink}>
                   {siteConfig.phone}
                 </a>
               </li>
@@ -74,18 +76,29 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="mb-12 rounded-xl border border-border/60 bg-muted/20 p-6 sm:p-8 md:flex md:items-center md:justify-between md:gap-10">
+          <div className="mb-5 md:mb-0 md:max-w-sm">
+            <h4 className="font-semibold text-foreground mb-2">Stay in the loop</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Monthly insights on software, mobile apps, ICT, and digital marketing for East African
+              businesses and institutions.
+            </p>
+          </div>
+          <NewsletterSignup />
+        </div>
+
         <div className="border-t border-border/40 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>
             &copy; {currentYear} {siteConfig.name}. All rights reserved.{' '}
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
+            <Link href="/privacy" className={brandHoverClasses.mutedLink}>
               Privacy
             </Link>
             {' · '}
-            <Link href="/terms" className="hover:text-foreground transition-colors">
+            <Link href="/terms" className={brandHoverClasses.mutedLink}>
               Terms
             </Link>
             {' · '}
-            <CookieSettingsLink className="hover:text-foreground transition-colors" />
+            <CookieSettingsLink className={brandHoverClasses.mutedLink} />
           </p>
           <div className="flex gap-6">
             {[
@@ -98,7 +111,7 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
+                className={brandHoverClasses.mutedLink}
               >
                 {social.label}
               </a>

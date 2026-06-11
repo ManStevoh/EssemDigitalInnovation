@@ -1,25 +1,54 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Mail, MapPin, Phone, Send, Linkedin, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { contactFormSchema } from '@/lib/contact-schema';
-import { siteConfig } from '@/lib/site';
+import {
+  budgetRanges,
+  projectTimelines,
+  projectTypes,
+  siteConfig,
+} from '@/lib/site';
+import { brandHoverClasses } from '@/lib/brand-guide';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
+const initialFormData = {
+  name: '',
+  email: '',
+  projectType: '' as (typeof projectTypes)[number] | '',
+  budgetRange: '' as (typeof budgetRanges)[number] | '',
+  timeline: '' as (typeof projectTimelines)[number] | '',
+  message: '',
+  marketingConsent: false,
+};
+
+const selectClassName =
+  'w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
+
+const inputClassName =
+  'w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
+
 export function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<FormStatus>('idle');
   const [statusMessage, setStatusMessage] = useState('');
 
   const whatsappHref = getWhatsAppUrl();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target;
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
@@ -59,7 +88,7 @@ export function Contact() {
 
       setStatus('success');
       setStatusMessage("Message sent! We'll get back to you within 24 hours.");
-      setFormData({ name: '', email: '', message: '' });
+      setFormData(initialFormData);
     } catch {
       setStatus('error');
       setStatusMessage('Network error. Please try again or email us directly.');
@@ -79,8 +108,8 @@ export function Contact() {
           <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">Contact</p>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Start the conversation</h2>
           <p className="text-lg text-foreground/70 leading-relaxed">
-            Whether you represent a school, research institution, government agency, NGO, or
-            business — tell us what you need. We respond within one business day with clear next steps.
+            Tell us about your project — type, budget, and timeline help us respond with a clearer
+            proposal. We reply within one business day.
           </p>
         </div>
 
@@ -127,7 +156,7 @@ export function Contact() {
                         href={item.href}
                         target={item.external ? '_blank' : undefined}
                         rel={item.external ? 'noopener noreferrer' : undefined}
-                        className="text-foreground/70 hover:text-primary transition-colors"
+                        className={`text-foreground/70 ${brandHoverClasses.link}`}
                       >
                         {item.content}
                       </a>
@@ -151,7 +180,7 @@ export function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border/50 text-foreground/70 hover:text-primary hover:border-primary/30 transition-colors"
+                      className={`inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border/50 text-foreground/70 ${brandHoverClasses.link} ${brandHoverClasses.buttonBorder}`}
                     >
                       <Icon size={18} />
                     </a>
@@ -163,66 +192,170 @@ export function Contact() {
 
           <div className="rounded-xl border border-border/60 bg-background p-8 sm:p-10">
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  aria-invalid={!!errors.name}
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-                  required
-                />
-                {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    aria-invalid={!!errors.name}
+                    className={inputClassName}
+                    required
+                  />
+                  {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="you@company.com"
+                    aria-invalid={!!errors.email}
+                    className={inputClassName}
+                    required
+                  />
+                  {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
+                </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
+                <label htmlFor="projectType" className="block text-sm font-medium mb-2">
+                  Project type
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                <select
+                  id="projectType"
+                  name="projectType"
+                  value={formData.projectType}
                   onChange={handleChange}
-                  placeholder="you@company.com"
-                  aria-invalid={!!errors.email}
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  aria-invalid={!!errors.projectType}
+                  className={selectClassName}
                   required
-                />
-                {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
+                >
+                  <option value="" disabled>
+                    Select a service
+                  </option>
+                  {projectTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+                {errors.projectType && (
+                  <p className="text-sm text-destructive mt-1">{errors.projectType}</p>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="budgetRange" className="block text-sm font-medium mb-2">
+                    Budget range
+                  </label>
+                  <select
+                    id="budgetRange"
+                    name="budgetRange"
+                    value={formData.budgetRange}
+                    onChange={handleChange}
+                    aria-invalid={!!errors.budgetRange}
+                    className={selectClassName}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select budget
+                    </option>
+                    {budgetRanges.map((range) => (
+                      <option key={range} value={range}>
+                        {range}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.budgetRange && (
+                    <p className="text-sm text-destructive mt-1">{errors.budgetRange}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="timeline" className="block text-sm font-medium mb-2">
+                    Timeline
+                  </label>
+                  <select
+                    id="timeline"
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleChange}
+                    aria-invalid={!!errors.timeline}
+                    className={selectClassName}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select timeline
+                    </option>
+                    {projectTimelines.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.timeline && (
+                    <p className="text-sm text-destructive mt-1">{errors.timeline}</p>
+                  )}
+                </div>
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
+                  Project details
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Describe your business, what you need, and your timeline..."
+                  placeholder="Describe your goals, users, and any specific requirements..."
                   rows={5}
                   aria-invalid={!!errors.message}
-                  className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 resize-none"
+                  className={`${inputClassName} resize-none`}
                   required
                 />
-                {errors.message && <p className="text-sm text-destructive mt-1">{errors.message}</p>}
+                {errors.message && (
+                  <p className="text-sm text-destructive mt-1">{errors.message}</p>
+                )}
               </div>
+
+              <label className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="marketingConsent"
+                  checked={formData.marketingConsent}
+                  onChange={handleChange}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-border accent-primary"
+                />
+                <span>
+                  Send me updates, insights, and promotional offers from ESSEM Digital Innovations.{' '}
+                  <Link href="/privacy" className={`text-primary ${brandHoverClasses.link}`}>
+                    Privacy Policy
+                  </Link>
+                  .
+                </span>
+              </label>
 
               <Button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                className={`w-full bg-primary text-primary-foreground ${brandHoverClasses.button}`}
               >
-                {status === 'loading' ? 'Sending...' : 'Send message'}
+                {status === 'loading' ? 'Sending...' : 'Send inquiry'}
                 <Send size={18} />
               </Button>
 

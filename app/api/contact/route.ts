@@ -1,7 +1,31 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 import { contactFormSchema } from '@/lib/contact-schema';
+import { MARKETING_CONSENT_TEXT } from '@/lib/newsletter-schema';
+import { subscribeToNewsletter } from '@/lib/newsletter';
 import { siteConfig } from '@/lib/site';
+
+function formatInquiryEmail(data: {
+  name: string;
+  email: string;
+  projectType: string;
+  budgetRange: string;
+  timeline: string;
+  message: string;
+  marketingConsent?: boolean;
+}) {
+  return [
+    `Name: ${data.name}`,
+    `Email: ${data.email}`,
+    `Project type: ${data.projectType}`,
+    `Budget range: ${data.budgetRange}`,
+    `Timeline: ${data.timeline}`,
+    `Marketing opt-in: ${data.marketingConsent ? 'Yes' : 'No'}`,
+    '',
+    'Message:',
+    data.message,
+  ].join('\n');
+}
 
 export async function POST(request: Request) {
   try {
@@ -23,8 +47,8 @@ export async function POST(request: Request) {
           from: fromEmail,
           to: [contactEmail],
           reply_to: data.email,
-          subject: `Website inquiry from ${data.name}`,
-          text: `Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`,
+          subject: `[${data.projectType}] Inquiry from ${data.name}`,
+          text: formatInquiryEmail(data),
         }),
       });
 
@@ -46,6 +70,21 @@ export async function POST(request: Request) {
         },
         { status: 503 }
       );
+    }
+
+    if (data.marketingConsent) {
+      const newsletterResult = await subscribeToNewsletter({
+        email: data.email,
+        marketingConsent: true,
+        consentTimestamp: new Date().toISOString(),
+        source: 'contact-form',
+        consentText: MARKETING_CONSENT_TEXT,
+        name: data.name,
+      });
+
+      if (!newsletterResult.ok) {
+        console.error('[Contact form] Marketing list signup failed:', newsletterResult.error);
+      }
     }
 
     return NextResponse.json({ success: true });

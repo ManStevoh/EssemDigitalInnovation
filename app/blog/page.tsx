@@ -8,6 +8,7 @@ import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
 import { getAllPosts } from '@/lib/blog';
 import { createPageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Insights & Blog',
@@ -47,14 +48,14 @@ export default function BlogPage() {
                   </time>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-semibold tracking-tight mb-2">
-                  <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                  <Link href={`/blog/${post.slug}`} className={brandHoverClasses.link}>
                     {post.title}
                   </Link>
                 </h2>
                 <p className="text-foreground/70 mb-4 leading-relaxed">{post.description}</p>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                  className={`inline-flex items-center gap-2 text-sm font-medium text-primary ${brandHoverClasses.link}`}
                 >
                   Read article
                   <ArrowRight size={16} />

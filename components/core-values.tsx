@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { ScrollFadeIn, ScrollStaggerContainer, StaggerChild } from '@/components/scroll-animations';
 import { coreValues, type CoreValueIcon } from '@/lib/site';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 const iconMap: Record<CoreValueIcon, LucideIcon> = {
   innovation: Lightbulb,
@@ -52,7 +53,7 @@ export function CoreValues() {
                     <div className="value-card-icon">
                       <Icon size={22} strokeWidth={1.75} aria-hidden />
                     </div>
-                    <h3 className="mb-2 text-lg font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+                    <h3 className={`mb-2 text-lg font-semibold tracking-tight text-foreground ${brandHoverClasses.cardTitle}`}>
                       {value.title}
                     </h3>
                     <p className="text-sm leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:text-foreground/85">

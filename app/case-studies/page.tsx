@@ -7,6 +7,7 @@ import { Footer } from '@/components/footer';
 import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
 import { caseStudies, images } from '@/lib/site';
 import { createPageMetadata } from '@/lib/seo';
+import { brandHoverClasses } from '@/lib/brand-guide';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Case Studies',
@@ -86,7 +87,7 @@ export default function CaseStudiesPage() {
 
                   <Link
                     href="/#contact"
-                    className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+                    className={`inline-flex items-center gap-2 text-primary font-medium ${brandHoverClasses.link}`}
                   >
                     Start a similar project
                     <ArrowRight size={16} />
@@ -103,7 +104,7 @@ export default function CaseStudiesPage() {
             </p>
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              className={`inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground ${brandHoverClasses.button}`}
             >
               Get in touch
               <ArrowRight size={16} />

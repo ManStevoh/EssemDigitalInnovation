@@ -9,6 +9,14 @@
   --brand-emerald-green: #10B981;
   --brand-deep-navy: #0F172A;
 
+  /* Brand hover tokens — see lib/brand-guide.ts */
+  --hover-link: #2563EB;
+  --hover-button: #1D4ED8;
+  --hover-muted-link: #0F172A;
+  --hover-card-title: #2563EB;
+  --hover-accent: #10B981;
+  --hover-button-border: rgba(37, 99, 235, 0.3);
+
   --background: #FFFFFF;
   --foreground: #0F172A;
   --card: #FFFFFF;
@@ -163,6 +171,30 @@
     @apply transition-shadow duration-200 hover:shadow-md;
   }
 
+  .hover-brand-link {
+    @apply transition-colors hover:text-[color:var(--hover-link)];
+  }
+
+  .hover-brand-muted-link {
+    @apply transition-colors hover:text-[color:var(--hover-muted-link)];
+  }
+
+  .group-hover-brand-title {
+    @apply transition-colors duration-300 group-hover:text-[color:var(--hover-card-title)];
+  }
+
+  .hover-brand-button {
+    @apply transition-colors hover:bg-[color:var(--hover-button)];
+  }
+
+  .hover-brand-accent {
+    @apply transition-colors hover:text-[color:var(--hover-accent)];
+  }
+
+  .hover-brand-button-border {
+    @apply transition-colors hover:border-[color:var(--hover-button-border)];
+  }
+
   .solutions-section {
     background:
       radial-gradient(ellipse 90% 60% at 50% -10%, rgba(37, 99, 235, 0.07), transparent 55%),
@@ -207,7 +239,7 @@
   }
 
   .solution-card-icon {
-    @apply relative z-10 mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#1D4ED8] text-primary-foreground shadow-lg shadow-primary/25 ring-1 ring-white/20 transition-all duration-500;
+    @apply relative z-10 mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[color:var(--hover-button)] text-primary-foreground shadow-lg shadow-primary/25 ring-1 ring-white/20 transition-all duration-500;
   }
 
   .solution-card:hover .solution-card-icon {
@@ -265,6 +297,6 @@
   }
 
   .value-card-icon {
-    @apply mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/15 to-secondary/10 text-primary ring-1 ring-primary/15 transition-all duration-300 group-hover:from-primary group-hover:to-[#1D4ED8] group-hover:text-primary-foreground group-hover:ring-primary/30 group-hover:shadow-md group-hover:shadow-primary/20;
+    @apply mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/15 to-secondary/10 text-primary ring-1 ring-primary/15 transition-all duration-300 group-hover:from-primary group-hover:to-[color:var(--hover-button)] group-hover:text-primary-foreground group-hover:ring-primary/30 group-hover:shadow-md group-hover:shadow-primary/20;
   }
 }
