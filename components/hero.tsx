@@ -125,7 +125,7 @@ export function Hero() {
           <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50 bg-muted">
             <Image
               src={images.hero}
-              alt="ESSEM team delivering technology solutions for East African businesses"
+              alt="African professionals celebrating project success at a modern office desk"
               fill
               className="object-cover"
               priority

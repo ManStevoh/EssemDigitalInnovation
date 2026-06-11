@@ -13,7 +13,7 @@ export function About() {
           <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50 bg-muted">
             <Image
               src={images.about}
-              alt="ESSEM Digital Innovations team consulting with a client"
+              alt="African professionals in a technology strategy meeting"
               fill
               priority
               className="object-cover"

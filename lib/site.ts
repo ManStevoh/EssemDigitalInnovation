@@ -159,6 +159,8 @@ export const navLinks = [
   { href: '/#solutions', label: 'Solutions' },
   { href: '/#case-study', label: 'Work' },
   { href: '/#industries', label: 'Industries' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/careers', label: 'Careers' },
   { href: '/#contact', label: 'Contact' },
 ] as const;
 
@@ -359,8 +361,8 @@ export const featuredCaseStudy = {
 export const caseStudies = [featuredCaseStudy] as const;
 
 export const images = {
-  hero: '/images/hero-team.jpg',
-  about: '/images/about-office.jpg',
+  hero: '/images/hero-team-east-africa.jpg',
+  about: '/images/about-office-east-africa.jpg',
   caseStudy: '/images/case-study-logistics.jpg',
 } as const;
 
