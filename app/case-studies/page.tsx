@@ -1,15 +1,19 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
+import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
 import { caseStudies, images } from '@/lib/site';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'Case Studies',
-  description: 'See how ESSEM Digital Innovations helps East African organizations modernize with custom software and AI.',
-};
+  description:
+    'See how ESSEM Digital Innovations helps schools, government agencies, NGOs, and businesses across East Africa modernize with custom software and digital solutions.',
+  path: '/case-studies',
+});
 
 export default function CaseStudiesPage() {
   return (
@@ -17,13 +21,7 @@ export default function CaseStudiesPage() {
       <Navigation />
       <main id="main-content" className="pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
-          >
-            <ArrowLeft size={16} />
-            Back to home
-          </Link>
+          <SeoBreadcrumbs items={[{ name: 'Case Studies', path: '/case-studies' }]} />
 
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">Case studies</h1>
           <p className="text-lg text-foreground/70 max-w-2xl mb-16">
@@ -36,10 +34,10 @@ export default function CaseStudiesPage() {
                 key={study.slug}
                 className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start rounded-2xl border border-border/50 p-8 sm:p-10"
               >
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted">
                   <Image
                     src={images.caseStudy}
-                    alt={study.title}
+                    alt={`Case study: ${study.title} for ${study.client}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"

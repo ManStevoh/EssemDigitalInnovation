@@ -3,25 +3,121 @@ export const siteConfig = {
   shortName: 'ESSEM',
   tagline: 'Software, mobile apps, and digital growth for East African businesses',
   description:
-    'Mombasa-based technology partner delivering custom software, mobile applications, startup ICT support, digital marketing, and industry-specific systems for businesses, startups, and security firms across Kenya and East Africa.',
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://essemdigital.com',
+    'Mombasa-based technology partner delivering custom software, mobile applications, ICT support, and digital services for businesses, schools, universities, research institutions, government agencies, NGOs, and security firms across Kenya and East Africa.',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.essemdigital.com',
   email: 'contact@essemdigital.com',
-  phone: '+254 (41) 222-0000',
-  location: 'Mombasa, Kenya',
+  phone: '+254 728 210 962',
+  whatsapp: '254728210962',
+  location: 'Mwembe Tayari, Mombasa',
+  mapEmbedUrl:
+    'https://maps.google.com/maps?q=Mwembe+Tayari,Mombasa,Kenya&z=15&output=embed',
   address: {
-    streetAddress: 'Nyali Road',
+    streetAddress: 'Mwembe Tayari',
     addressLocality: 'Mombasa',
     addressRegion: 'Coast',
     addressCountry: 'KE',
   },
   social: {
-    linkedin: 'https://linkedin.com/company/essemdigital',
-    facebook: 'https://facebook.com/essemdigital',
-    x: 'https://x.com/essemdigital',
-    github: 'https://github.com/essemdigital',
+    linkedin: 'https://www.linkedin.com/company/essem-digital/',
+    facebook: 'https://www.facebook.com/share/1TfTTa5qQo/',
+    instagram: 'https://www.instagram.com/essemdigital?igsh=MWpmOWw0cWFpaTJubg==',
   },
   brandTagline: 'Building a Connected World',
+  vision:
+    'To build a smarter, more connected, and sustainable world through technology.',
+  mission:
+    'To design and deliver innovative digital solutions that improve efficiency, enhance connectivity, empower businesses and communities, and drive sustainable impact through technology.',
+  legalUpdated: {
+    privacy: '2026-06-01',
+    terms: '2026-06-01',
+  },
+  careersPostedDate: '2026-06-01',
 } as const;
+
+export const openRoles = [
+  {
+    title: 'Full-Stack Developer',
+    type: 'Full-time · Mombasa',
+    description:
+      'Build web and mobile solutions for clients across East Africa. Experience with React, Node.js, or similar modern stacks preferred.',
+  },
+  {
+    title: 'Mobile App Developer',
+    type: 'Full-time · Mombasa',
+    description:
+      'Develop iOS and Android applications for business and startup clients. Cross-platform experience is a plus.',
+  },
+  {
+    title: 'Digital Marketing Specialist',
+    type: 'Full-time · Mombasa',
+    description:
+      'Plan and execute social media, content, and campaign work for SME and enterprise clients with clear reporting.',
+  },
+  {
+    title: 'ICT Support & Solutions Associate',
+    type: 'Full-time · Mombasa',
+    description:
+      'Support startups and businesses with hosting, cloud tools, web presence, and day-to-day technology needs.',
+  },
+] as const;
+
+export type CoreValueIcon =
+  | 'innovation'
+  | 'impact'
+  | 'integrity'
+  | 'collaboration'
+  | 'sustainability'
+  | 'accessibility'
+  | 'excellence';
+
+export const coreValues: ReadonlyArray<{
+  icon: CoreValueIcon;
+  title: string;
+  description: string;
+}> = [
+  {
+    icon: 'innovation',
+    title: 'Innovation',
+    description:
+      'We create forward-thinking digital solutions that solve real-world challenges through technology, creativity, and continuous improvement.',
+  },
+  {
+    icon: 'impact',
+    title: 'Impact',
+    description:
+      'We strive to create meaningful value by driving business growth, empowering communities, and contributing to positive social and environmental change.',
+  },
+  {
+    icon: 'integrity',
+    title: 'Integrity',
+    description:
+      'We uphold transparency, accountability, professionalism, and ethical responsibility in every decision and interaction.',
+  },
+  {
+    icon: 'collaboration',
+    title: 'Collaboration',
+    description:
+      'We believe great innovation is built through teamwork, strategic partnerships, and shared ideas.',
+  },
+  {
+    icon: 'sustainability',
+    title: 'Sustainability',
+    description:
+      'We are committed to building environmentally responsible solutions and promoting practices that support a sustainable future.',
+  },
+  {
+    icon: 'accessibility',
+    title: 'Accessibility',
+    description:
+      'We design inclusive, user-centered technologies that are accessible, practical, and beneficial to diverse communities and industries.',
+  },
+  {
+    icon: 'excellence',
+    title: 'Excellence',
+    description:
+      'We are committed to delivering high-quality solutions, continuous learning, and exceptional experiences in everything we do.',
+  },
+] as const;
 
 export const brand = {
   logo: '/brand/logo.png',
@@ -31,26 +127,30 @@ export const brand = {
 } as const;
 
 export const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#solutions', label: 'Solutions' },
-  { href: '#case-study', label: 'Work' },
-  { href: '#industries', label: 'Industries' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#solutions', label: 'Solutions' },
+  { href: '/#case-study', label: 'Work' },
+  { href: '/#industries', label: 'Industries' },
+  { href: '/#contact', label: 'Contact' },
 ] as const;
 
 export const heroStats = [
   { value: 40, suffix: '+', label: 'Projects delivered' },
-  { value: 14, suffix: '', label: 'Industries served' },
+  { value: 16, suffix: '', label: 'Sectors served' },
   { value: 8, suffix: '+', label: 'Years in market' },
   { value: 98, suffix: '%', label: 'Client retention' },
 ] as const;
 
+export const partnerSectors =
+  'Schools, universities, research institutions, government agencies, NGOs, and enterprises' as const;
+
 export const clientLogos = [
   { name: 'Coastal Logistics Group', initials: 'CLG' },
   { name: 'East Africa Finance', initials: 'EAF' },
-  { name: 'Mombasa Health Network', initials: 'MHN' },
-  { name: 'Kenya EdTech Initiative', initials: 'KEI' },
-  { name: 'Regional Manufacturing Co.', initials: 'RMC' },
+  { name: 'Mombasa Learning Academy', initials: 'MLA' },
+  { name: 'Coast Research Network', initials: 'CRN' },
+  { name: 'Regional Development NGO', initials: 'RDN' },
 ] as const;
 
 export type SolutionIcon =
@@ -129,24 +229,52 @@ export const solutions: ReadonlyArray<{
 
 export const focusAreas = [
   {
-    area: 'Business & Enterprise',
-    desc: 'Custom software, mobile apps, and platforms for organizations that need reliable systems supporting daily operations and long-term growth.',
+    area: 'Schools & Learning Institutions',
+    desc: 'Learning management systems, student information platforms, school websites, and digital tools that help educators administer, teach, and communicate effectively.',
   },
   {
-    area: 'Startups & New Ventures',
-    desc: 'Practical ICT partnership — from going online and setting up core tools to building your first product with a team that understands lean budgets and fast timelines.',
+    area: 'Universities & Research Institutions',
+    desc: 'Research data systems, institutional portals, collaboration platforms, and custom software that supports academic work, reporting, and knowledge sharing.',
   },
   {
-    area: 'Growth & Visibility',
-    desc: 'Digital marketing and social media management with clear strategy, consistent execution, and reporting tied to business outcomes.',
+    area: 'Government Agencies',
+    desc: 'Citizen service portals, permit and licensing systems, internal workflow tools, and secure platforms built for transparency and public accountability.',
+  },
+  {
+    area: 'NGOs & Development Organizations',
+    desc: 'Programme management systems, beneficiary tracking, donor reporting, field data collection, and digital presence for mission-driven organizations.',
+  },
+  {
+    area: 'Business, Startups & Enterprise',
+    desc: 'Custom software, mobile apps, ICT enablement, and digital marketing for companies scaling operations across East Africa.',
   },
   {
     area: 'Security & Field Operations',
-    desc: 'Industry-specific systems for security companies — scheduling, patrols, incidents, and client management built for teams working on the ground.',
+    desc: 'Operational systems for security firms — scheduling, patrols, incidents, and client management for distributed field teams.',
   },
 ] as const;
 
 export const industries = [
+  {
+    title: 'Schools & Learning Institutions',
+    description:
+      'School management systems, e-learning platforms, parent communication portals, and websites for primary, secondary, and vocational institutions.',
+  },
+  {
+    title: 'Universities & Research Institutions',
+    description:
+      'Research databases, institutional portals, collaboration tools, and bespoke systems for academic departments and research programmes.',
+  },
+  {
+    title: 'Government Agencies',
+    description:
+      'Citizen service platforms, permit and licensing workflows, document management, and secure systems for county and national agencies.',
+  },
+  {
+    title: 'NGOs & Development',
+    description:
+      'Programme tracking, field reporting, donor dashboards, and digital tools for nonprofits and community development organizations.',
+  },
   {
     title: 'Startups & Scale-ups',
     description:
@@ -158,20 +286,12 @@ export const industries = [
       'Guard management, patrol systems, incident logs, and client reporting for security firms operating across sites and contracts.',
   },
   {
-    title: 'Education',
-    description: 'Learning platforms, student records, and digital tools for schools and training providers.',
-  },
-  {
     title: 'Finance',
     description: 'Payment interfaces, reporting systems, and secure client-facing financial platforms.',
   },
   {
     title: 'Healthcare',
     description: 'Clinic workflows, patient management, and secure health information systems.',
-  },
-  {
-    title: 'Government & Public Sector',
-    description: 'Citizen-facing portals, permit systems, and transparent service delivery platforms.',
   },
   {
     title: 'Logistics & Transport',
@@ -216,3 +336,41 @@ export const images = {
   about: '/images/about-office.jpg',
   caseStudy: '/images/case-study-logistics.jpg',
 } as const;
+
+export const faqs = [
+  {
+    question: 'What types of organizations do you work with?',
+    answer:
+      'We partner with schools, universities, research institutions, government agencies, NGOs, startups, enterprises, and security firms across Kenya and East Africa — from institutions going digital for the first time to organizations modernizing core systems.',
+  },
+  {
+    question: 'Do you work with schools, government, and NGOs?',
+    answer:
+      'Yes. We build and support learning platforms, research systems, citizen service portals, programme management tools, and institutional websites — with an understanding of compliance, reporting, and budget realities in the public and nonprofit sectors.',
+  },
+  {
+    question: 'Do you support startups that are just going online?',
+    answer:
+      'Yes. Our startup ICT services cover domain setup, hosting, business email, cloud tools, web presence, and ongoing technical guidance — so founders can focus on their business while we handle the technology foundation.',
+  },
+  {
+    question: 'How long does a typical project take?',
+    answer:
+      'Timelines depend on scope. A marketing site or ICT setup may take 2–4 weeks. Custom software or mobile apps typically run 8–16 weeks after requirements are agreed. We provide a clear timeline before work begins.',
+  },
+  {
+    question: 'Can you build both web and mobile applications?',
+    answer:
+      'Yes. We deliver web platforms, native and cross-platform mobile apps for iOS and Android, and integrated systems that connect both — including field tools for security and logistics teams.',
+  },
+  {
+    question: 'Do you offer digital marketing and social media management?',
+    answer:
+      'We provide strategy, content planning, campaign execution, and social media management with reporting tied to your business goals — not vanity metrics alone.',
+  },
+  {
+    question: 'How do we get started?',
+    answer:
+      'Contact us via the form, email, phone, or WhatsApp. We will schedule a consultation to understand your needs, recommend the right services, and outline next steps with no obligation.',
+  },
+] as const;

@@ -1,11 +1,14 @@
-import { clientLogos } from '@/lib/site';
+import { clientLogos, partnerSectors } from '@/lib/site';
 
 export function ClientLogos() {
   return (
     <section aria-label="Trusted by" className="border-y border-border/40 bg-muted/30 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-sm font-medium text-muted-foreground mb-8 uppercase tracking-wider">
-          Trusted by organizations across East Africa
+        <p className="text-center text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wider">
+          Trusted partners across East Africa
+        </p>
+        <p className="text-center text-xs text-muted-foreground/80 mb-8 max-w-2xl mx-auto">
+          Working with {partnerSectors}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
           {clientLogos.map((client) => (

@@ -11,24 +11,17 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950">
+    <nav className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center min-h-16 py-2 gap-4">
-          <div className="shrink-0">
-            <span className="sm:hidden">
-              <Logo variant="icon" />
-            </span>
-            <span className="hidden sm:inline">
-              <Logo variant="full" />
-            </span>
-          </div>
+          <Logo variant="wordmark" />
 
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors"
+                className="px-3 py-2 text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
               >
                 {link.label}
               </Link>
@@ -37,13 +30,13 @@ export function Navigation() {
 
           <div className="hidden md:block shrink-0">
             <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link href="#contact">Contact us</Link>
+              <Link href="/#contact">Contact us</Link>
             </Button>
           </div>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md shrink-0 text-white"
+            className="md:hidden p-2 rounded-md shrink-0 text-foreground"
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
@@ -52,12 +45,12 @@ export function Navigation() {
         </div>
 
         {isOpen && (
-          <div className="md:hidden pb-4 border-t border-white/10">
+          <div className="md:hidden pb-4 border-t border-border/40">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-3 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors"
+                className="block px-3 py-2 text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -65,7 +58,7 @@ export function Navigation() {
             ))}
             <div className="px-3 pt-4">
               <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link href="#contact" onClick={() => setIsOpen(false)}>
+                <Link href="/#contact" onClick={() => setIsOpen(false)}>
                   Contact us
                 </Link>
               </Button>

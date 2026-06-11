@@ -1,45 +1,67 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { format } from 'date-fns';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
+import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
+import { getAllPosts } from '@/lib/blog';
+import { createPageMetadata } from '@/lib/seo';
+import { siteConfig } from '@/lib/site';
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Insights on software development, AI, and digital transformation in East Africa from ESSEM Digital Innovations.',
-};
+export const metadata: Metadata = createPageMetadata({
+  title: 'Insights & Blog',
+  description:
+    'Practical insights on software development, mobile apps, ICT infrastructure, and digital marketing for East African businesses and institutions.',
+  path: '/blog',
+});
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <>
       <Navigation />
       <main id="main-content" className="pt-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
-          >
-            <ArrowLeft size={16} />
-            Back to home
-          </Link>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <SeoBreadcrumbs items={[{ name: 'Blog', path: '/blog' }]} />
 
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-6">
-            <BookOpen className="text-primary" size={28} />
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">Insights coming soon</h1>
-          <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
-            We&apos;re preparing articles on software development, AI adoption, and digital transformation
-            for East African businesses. Check back soon — or reach out if there&apos;s a topic you&apos;d like us to cover.
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">Insights & Blog</h1>
+          <p className="text-lg text-foreground/70 mb-12 max-w-2xl">
+            Practical perspectives on software, mobile development, startup ICT, and digital growth
+            from the {siteConfig.shortName} team in Mombasa.
           </p>
 
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-          >
-            Suggest a topic
-            <ArrowRight size={16} />
-          </Link>
+          <div className="space-y-6">
+            {posts.map((post) => (
+              <article
+                key={post.slug}
+                className="rounded-xl border border-border/60 bg-background p-6 sm:p-8 hover:border-primary/30 transition-colors"
+              >
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                    {post.category}
+                  </span>
+                  <time dateTime={post.date} className="text-xs text-muted-foreground">
+                    {format(new Date(post.date), 'd MMMM yyyy')}
+                  </time>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-semibold tracking-tight mb-2">
+                  <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                    {post.title}
+                  </Link>
+                </h2>
+                <p className="text-foreground/70 mb-4 leading-relaxed">{post.description}</p>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                >
+                  Read article
+                  <ArrowRight size={16} />
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
       </main>
       <Footer />

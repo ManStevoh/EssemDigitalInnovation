@@ -1,52 +1,46 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/next';
+import { Montserrat } from 'next/font/google';
+import { ConsentAwareAnalytics } from '@/components/consent-aware-analytics';
+import { CookieConsent } from '@/components/cookie-consent';
 import { SkipLink } from '@/components/skip-link';
-import { OrganizationJsonLd } from '@/components/json-ld';
+import { WhatsAppButton } from '@/components/whatsapp-button';
+import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/json-ld';
+import { createPageMetadata } from '@/lib/seo';
 import { siteConfig, brand } from '@/lib/site';
 import './globals.css';
 
-const geistSans = Geist({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  variable: '--font-geist-sans',
-});
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
+  variable: '--font-montserrat',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  ...createPageMetadata({ path: '/' }),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: `${siteConfig.name} — ${siteConfig.brandTagline}`,
     template: `%s | ${siteConfig.shortName}`,
   },
-  description: siteConfig.description,
+  applicationName: siteConfig.shortName,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
   keywords: [
     'software development Kenya',
     'mobile app development Mombasa',
-    'startup ICT support Kenya',
-    'digital marketing East Africa',
-    'social media management Kenya',
-    'security industry software',
-    'custom software development',
-    'technology partner startups',
+    'custom software East Africa',
+    'digital marketing Kenya',
+    'ICT support startups Kenya',
+    'school management software Kenya',
+    'government digital services Africa',
+    'NGO technology solutions',
+    'ESSEM Digital Innovations',
   ],
-  authors: [{ name: siteConfig.name }],
-  openGraph: {
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description: siteConfig.description,
-    type: 'website',
-    locale: 'en_KE',
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description: siteConfig.description,
-  },
   icons: {
     icon: [
       { url: brand.favicon, sizes: '32x32', type: 'image/png' },
@@ -55,9 +49,13 @@ export const metadata: Metadata = {
     apple: brand.appleIcon,
     shortcut: brand.favicon,
   },
-  robots: {
-    index: true,
-    follow: true,
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { other: { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
+      : {}),
   },
 };
 
@@ -67,14 +65,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en-KE" className={montserrat.variable}>
       <head>
         <OrganizationJsonLd />
+        <WebSiteJsonLd />
+        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Blog RSS`} href="/feed.xml" />
       </head>
       <body className="font-sans antialiased">
         <SkipLink />
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <WhatsAppButton />
+        <CookieConsent />
+        <ConsentAwareAnalytics />
       </body>
     </html>
   );

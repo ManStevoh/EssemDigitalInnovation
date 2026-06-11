@@ -24,17 +24,16 @@ export function CaseStudy() {
         </ScrollFadeIn>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <ScrollFadeIn>
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/50">
-              <Image
-                src={images.caseStudy}
-                alt="Logistics operations at a shipping port"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </ScrollFadeIn>
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/50 bg-muted">
+            <Image
+              src={images.caseStudy}
+              alt="Logistics operations at a shipping port"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
 
           <ScrollFadeIn>
             <div className="space-y-6">

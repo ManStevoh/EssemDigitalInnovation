@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedCounter } from '@/components/animated-counter';
 import { heroStats, images, siteConfig } from '@/lib/site';
@@ -74,20 +74,23 @@ export function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <p className="inline-flex items-center gap-2 mb-6 text-sm text-muted-foreground">
-              <MapPin size={14} className="text-primary shrink-0" aria-hidden />
-              {siteConfig.location} — serving businesses and startups across East Africa
+            <p className="mb-6 text-sm text-muted-foreground">
+              Partnering with schools, institutions, government, NGOs, and business across East Africa
             </p>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight mb-6 leading-[1.12] text-foreground">
-              Software, mobile apps, and digital growth for{' '}
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight mb-4 leading-[1.12]">
+              <span className="text-secondary">Software, mobile apps, and digital growth for</span>{' '}
               <span className="text-primary">ambitious organizations</span>
             </h1>
 
+            <p className="text-base font-medium text-secondary mb-6">
+              {siteConfig.brandTagline}
+            </p>
+
             <p className="text-lg text-foreground/70 mb-8 max-w-xl leading-relaxed">
-              We help businesses and startups build reliable technology — custom software, mobile
-              applications, ICT infrastructure, digital marketing, and specialized systems for
-              security and field-based operations.
+              We partner with schools, universities, research institutions, government agencies,
+              NGOs, and businesses to deliver custom software, mobile apps, ICT support, digital
+              marketing, and specialized systems — built for real-world use across East Africa.
             </p>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-12">
@@ -119,7 +122,7 @@ export function Hero() {
             </dl>
           </div>
 
-          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50">
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50 bg-muted">
             <Image
               src={images.hero}
               alt="ESSEM team delivering technology solutions for East African businesses"

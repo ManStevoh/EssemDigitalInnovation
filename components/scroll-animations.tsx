@@ -72,7 +72,7 @@ export function StaggerChild({ children }: { children: ReactNode }) {
   return (
     <div
       data-stagger-child
-      className="opacity-0 translate-y-4 transition-all duration-500 ease-out"
+      className="h-full opacity-0 translate-y-4 transition-all duration-500 ease-out"
     >
       {children}
     </div>

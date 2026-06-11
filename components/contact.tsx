@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, MapPin, Phone, Send, Linkedin, Facebook, Github } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Linkedin, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { contactFormSchema } from '@/lib/contact-schema';
 import { siteConfig } from '@/lib/site';
+import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -13,6 +14,8 @@ export function Contact() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<FormStatus>('idle');
   const [statusMessage, setStatusMessage] = useState('');
+
+  const whatsappHref = getWhatsAppUrl();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -66,7 +69,7 @@ export function Contact() {
   const socialLinks = [
     { name: 'LinkedIn', href: siteConfig.social.linkedin, icon: Linkedin },
     { name: 'Facebook', href: siteConfig.social.facebook, icon: Facebook },
-    { name: 'GitHub', href: siteConfig.social.github, icon: Github },
+    { name: 'Instagram', href: siteConfig.social.instagram, icon: Instagram },
   ];
 
   return (
@@ -76,13 +79,12 @@ export function Contact() {
           <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">Contact</p>
           <h2 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Start the conversation</h2>
           <p className="text-lg text-foreground/70 leading-relaxed">
-            Whether you need a mobile app, startup ICT support, a security operations system, or
-            a digital marketing plan — describe your requirements and we will respond within one
-            business day with next steps.
+            Whether you represent a school, research institution, government agency, NGO, or
+            business — tell us what you need. We respond within one business day with clear next steps.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
           <div className="space-y-8">
             <h3 className="text-xl font-bold">Get in touch</h3>
 
@@ -100,6 +102,13 @@ export function Contact() {
                 href: `tel:${siteConfig.phone.replace(/\D/g, '')}`,
               },
               {
+                icon: MessageCircle,
+                title: 'Live chat (WhatsApp)',
+                content: siteConfig.phone,
+                href: whatsappHref,
+                external: true,
+              },
+              {
                 icon: MapPin,
                 title: 'Office',
                 content: siteConfig.location,
@@ -114,7 +123,12 @@ export function Contact() {
                   <div>
                     <h4 className="font-semibold mb-0.5">{item.title}</h4>
                     {item.href ? (
-                      <a href={item.href} className="text-foreground/70 hover:text-primary transition-colors">
+                      <a
+                        href={item.href}
+                        target={item.external ? '_blank' : undefined}
+                        rel={item.external ? 'noopener noreferrer' : undefined}
+                        className="text-foreground/70 hover:text-primary transition-colors"
+                      >
                         {item.content}
                       </a>
                     ) : (
@@ -147,7 +161,7 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border/50 bg-background p-8 sm:p-10">
+          <div className="rounded-xl border border-border/60 bg-background p-8 sm:p-10">
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -222,6 +236,17 @@ export function Contact() {
               )}
             </form>
           </div>
+        </div>
+
+        <div className="rounded-xl overflow-hidden border border-border/60 h-64 sm:h-80">
+          <iframe
+            title={`${siteConfig.name} office location`}
+            src={siteConfig.mapEmbedUrl}
+            className="w-full h-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </div>
       </div>
     </section>

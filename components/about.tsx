@@ -3,36 +3,35 @@
 import Image from 'next/image';
 import { Eye, Target } from 'lucide-react';
 import { ScrollFadeIn, ScrollStaggerContainer, StaggerChild } from '@/components/scroll-animations';
-import { focusAreas, images } from '@/lib/site';
+import { focusAreas, images, siteConfig } from '@/lib/site';
 
 export function About() {
   return (
     <section id="about" className="py-20 sm:py-32 bg-muted/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
-          <ScrollFadeIn>
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50">
-              <Image
-                src={images.about}
-                alt="ESSEM Digital Innovations team consulting with a client"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </ScrollFadeIn>
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50 bg-muted">
+            <Image
+              src={images.about}
+              alt="ESSEM Digital Innovations team consulting with a client"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </div>
 
           <ScrollFadeIn>
             <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">About us</p>
             <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
-              A technology partner for businesses at every stage
+              A technology partner for institutions and organizations
             </h2>
             <p className="text-lg text-foreground/70 mb-4 leading-relaxed">
-              ESSEM Digital Innovations is based in Mombasa and works with established companies,
-              startups, and security firms across Kenya and East Africa. We deliver software,
-              mobile apps, ICT support, and digital marketing with the same standard of
-              professionalism — whether you are going online for the first time or modernizing
-              enterprise operations.
+              ESSEM Digital Innovations is based in Mombasa and works with schools, universities,
+              research institutions, government agencies, NGOs, startups, and enterprises across
+              Kenya and East Africa. We deliver software, mobile apps, ICT support, and digital
+              marketing with the same standard of professionalism — whether you are a school going
+              online, a research body managing data, or an agency modernizing public services.
             </p>
             <p className="text-foreground/70 leading-relaxed">
               Our work is grounded in clear communication, defined deliverables, and systems
@@ -52,9 +51,7 @@ export function About() {
                   <h3 className="text-xl font-semibold tracking-tight">Our vision</h3>
                 </div>
                 <p className="text-foreground/70 leading-relaxed">
-                  An East Africa where every business — from a first-time startup to a national
-                  security provider — has access to dependable technology that supports growth
-                  and professional operations.
+                  {siteConfig.vision}
                 </p>
               </div>
             </StaggerChild>
@@ -67,9 +64,7 @@ export function About() {
                   <h3 className="text-xl font-semibold tracking-tight">Our mission</h3>
                 </div>
                 <p className="text-foreground/70 leading-relaxed">
-                  Deliver well-engineered digital solutions and practical ICT support that help
-                  clients operate more efficiently, reach customers online, and build lasting
-                  competitive advantage.
+                  {siteConfig.mission}
                 </p>
               </div>
             </StaggerChild>

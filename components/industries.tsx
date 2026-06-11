@@ -14,9 +14,9 @@ export function Industries() {
               Sector experience that informs better delivery
             </h2>
             <p className="text-lg text-foreground/70 leading-relaxed">
-              We adapt our approach to the regulations, workflows, and commercial realities of
-              each sector — including startups entering the market and security firms managing
-              distributed field teams.
+              We adapt our approach to the regulations, workflows, and realities of each sector —
+              from schools and research institutions to government agencies, NGOs, startups, and
+              field-based operations.
             </p>
           </div>
         </ScrollFadeIn>
@@ -25,9 +25,13 @@ export function Industries() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {industries.map((industry) => (
               <StaggerChild key={industry.title}>
-                <article className="rounded-xl border border-border/60 bg-background p-6 h-full">
-                  <h3 className="text-base font-semibold mb-2 tracking-tight">{industry.title}</h3>
-                  <p className="text-sm text-foreground/70 leading-relaxed">{industry.description}</p>
+                <article className="industry-card group cursor-default">
+                  <h3 className="mb-2 text-base font-semibold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+                    {industry.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:text-foreground/80">
+                    {industry.description}
+                  </p>
                 </article>
               </StaggerChild>
             ))}
