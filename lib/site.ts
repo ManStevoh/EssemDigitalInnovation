@@ -37,25 +37,29 @@ export const siteConfig = {
 export const openRoles = [
   {
     title: 'Full-Stack Developer',
-    type: 'Full-time · Mombasa',
+    type: 'Part-time · Mombasa',
+    employmentType: 'PART_TIME',
     description:
       'Build web and mobile solutions for clients across East Africa. Experience with React, Node.js, or similar modern stacks preferred.',
   },
   {
     title: 'Mobile App Developer',
-    type: 'Full-time · Mombasa',
+    type: 'Part-time · Mombasa',
+    employmentType: 'PART_TIME',
     description:
       'Develop iOS and Android applications for business and startup clients. Cross-platform experience is a plus.',
   },
   {
     title: 'Digital Marketing Specialist',
-    type: 'Full-time · Mombasa',
+    type: 'Part-time · Mombasa',
+    employmentType: 'PART_TIME',
     description:
       'Plan and execute social media, content, and campaign work for SME and enterprise clients with clear reporting.',
   },
   {
     title: 'ICT Support & Solutions Associate',
-    type: 'Full-time · Mombasa',
+    type: 'Volunteer · Mombasa',
+    employmentType: 'VOLUNTEER',
     description:
       'Support startups and businesses with hosting, cloud tools, web presence, and day-to-day technology needs.',
   },

@@ -157,7 +157,7 @@ export function BlogPostingJsonLd({ post }: { post: BlogPostMeta }) {
   return <JsonLd data={data} />;
 }
 
-type JobRole = { title: string; type: string; description: string };
+type JobRole = { title: string; type: string; description: string; employmentType: string };
 
 export function JobPostingJsonLd({ roles }: { roles: JobRole[] }) {
   const data = roles.map((role) => ({
@@ -166,7 +166,7 @@ export function JobPostingJsonLd({ roles }: { roles: JobRole[] }) {
     title: role.title,
     description: role.description,
     datePosted: siteConfig.careersPostedDate,
-    employmentType: 'FULL_TIME',
+    employmentType: role.employmentType,
     hiringOrganization: {
       '@type': 'Organization',
       name: siteConfig.name,

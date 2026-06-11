@@ -12,7 +12,7 @@ import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Careers — Build With Us',
-  description: `Join ${siteConfig.name}. Open roles in software development, mobile apps, digital marketing, and ICT support in Mombasa, Kenya.`,
+  description: `Join ${siteConfig.name}. Part-time and volunteer roles in software development, mobile apps, digital marketing, and ICT support in Mombasa, Kenya.`,
   path: '/careers',
 });
 
@@ -32,8 +32,9 @@ export default function CareersPage() {
           <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">Careers</p>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">Build with us</h1>
           <p className="text-lg text-foreground/70 mb-4 max-w-2xl leading-relaxed">
-            {siteConfig.name} is growing its team in Mombasa. We work on software, mobile apps,
-            ICT support, and digital marketing for businesses across Kenya and East Africa.
+            {siteConfig.name} is growing its team in Mombasa. We offer part-time and volunteer
+            opportunities in software, mobile apps, ICT support, and digital marketing for
+            businesses across Kenya and East Africa.
           </p>
           <p className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-12">
             <MapPin size={14} className="text-primary" aria-hidden />
