@@ -2,13 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
+import { ArrowRight } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
 import { MarkdownContent } from '@/components/markdown-content';
 import { BlogPostingJsonLd } from '@/components/json-ld';
 import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
+import { Button } from '@/components/ui/button';
 import { getAllSlugs, getPostBySlug } from '@/lib/blog';
 import { createPageMetadata } from '@/lib/seo';
+import { siteConfig } from '@/lib/site';
+import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -39,6 +43,10 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const contactUrl = getWhatsAppUrl(
+    `Hello ${siteConfig.shortName}, I read your article "${post.title}" and would like to discuss how you can help.`
+  );
+
   return (
     <>
       <BlogPostingJsonLd post={post} />
@@ -68,6 +76,27 @@ export default async function BlogPostPage({ params }: PageProps) {
           </p>
 
           <MarkdownContent content={post.content} />
+
+          <section className="mt-16 rounded-xl border border-border/60 bg-muted/30 p-8 sm:p-10">
+            <h2 className="text-xl font-semibold mb-3">Ready to take the next step?</h2>
+            <p className="text-foreground/70 mb-6 leading-relaxed">
+              Whether you need custom software, mobile apps, ICT support, or digital marketing,{' '}
+              {siteConfig.shortName} can help. Tell us about your project.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Link href="/#contact">
+                  Discuss your project
+                  <ArrowRight size={16} />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="border-primary/30 text-primary">
+                <a href={contactUrl} target="_blank" rel="noopener noreferrer">
+                  Chat on WhatsApp
+                </a>
+              </Button>
+            </div>
+          </section>
         </article>
       </main>
       <Footer />

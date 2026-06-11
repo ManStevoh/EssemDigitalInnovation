@@ -20,6 +20,7 @@ function LogoIcon({ className }: { className?: string }) {
       height={40}
       className={cn('h-9 w-9 object-contain', className)}
       priority
+      unoptimized
       aria-hidden
     />
   );
@@ -54,10 +55,11 @@ export function Logo({ variant = 'wordmark', className, imageClassName, href = '
         <Image
           src={brand.logo}
           alt="ESSEM Digital Innovations — Building a Connected World"
-          width={280}
-          height={100}
-          className={cn('h-12 sm:h-16 w-auto object-contain', imageClassName)}
+          width={862}
+          height={188}
+          className={cn('h-11 sm:h-14 w-auto max-w-[min(100%,280px)] sm:max-w-[320px] object-contain object-left', imageClassName)}
           priority
+          unoptimized
         />
       </span>
     );

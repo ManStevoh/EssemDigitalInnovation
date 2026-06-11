@@ -13,7 +13,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4 md:col-span-1">
-            <Logo variant="wordmark" />
+            <Logo variant="full" imageClassName="h-14 max-w-[260px]" />
             <p className="text-muted-foreground text-sm leading-relaxed">
               {siteConfig.brandTagline}. Based in {siteConfig.location}.
             </p>

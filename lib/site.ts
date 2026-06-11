@@ -151,7 +151,7 @@ export const projectTimelines = [
 ] as const;
 
 export const brand = {
-  logo: '/brand/logo.png',
+  logo: '/brand/logo-full.png',
   icon: '/brand/favicon.png',
   favicon: '/favicon.png',
   appleIcon: '/apple-icon.png',
