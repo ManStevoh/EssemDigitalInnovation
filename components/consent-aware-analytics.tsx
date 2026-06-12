@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Analytics } from '@vercel/analytics/next';
+import { GoogleAnalytics } from '@/components/google-analytics';
 import { COOKIE_CONSENT_CHANGED_EVENT, getCookieConsent } from '@/lib/cookie-consent';
 
 export function ConsentAwareAnalytics() {
@@ -26,5 +27,12 @@ export function ConsentAwareAnalytics() {
     return null;
   }
 
-  return <Analytics />;
+  return (
+    <>
+      <Analytics />
+      <Suspense fallback={null}>
+        <GoogleAnalytics />
+      </Suspense>
+    </>
+  );
 }

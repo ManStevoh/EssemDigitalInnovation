@@ -1,3 +1,5 @@
+import { getSocialShareUrls } from '@/lib/utm';
+
 export const siteConfig = {
   name: 'ESSEM Digital Innovations',
   shortName: 'ESSEM',
@@ -33,6 +35,9 @@ export const siteConfig = {
   },
   careersPostedDate: '2026-06-01',
 } as const;
+
+/** UTM-tagged website URLs — use these in social bios and organic posts for GA4 tracking. */
+export const socialShareUrls = getSocialShareUrls(siteConfig.url);
 
 export const openRoles = [
   {

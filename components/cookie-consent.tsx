@@ -150,8 +150,8 @@ export function CookieConsent() {
                   Analytics
                 </Label>
                 <p className="text-sm text-muted-foreground">
-                  Helps us understand traffic and improve the site using privacy-focused analytics
-                  (Vercel Analytics). No advertising cookies are used.
+                  Helps us understand traffic and improve the site using Vercel Analytics and Google
+                  Analytics (GA4). No advertising cookies are used.
                 </p>
               </div>
               <Switch

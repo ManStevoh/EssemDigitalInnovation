@@ -60,9 +60,10 @@ export default function PrivacyPage() {
                 </li>
                 <li>
                   <strong className="text-foreground">Analytics cookies</strong> — optional. If you
-                  accept them, we use Vercel Analytics to collect anonymized usage data (such as pages
-                  visited and general traffic patterns). We do not use advertising or cross-site
-                  tracking cookies.
+                  accept them, we use Vercel Analytics and Google Analytics (GA4) to collect
+                  anonymized usage data (such as pages visited, traffic sources, and general usage
+                  patterns). We do not use advertising or cross-site tracking cookies such as the
+                  Meta (Facebook) Pixel.
                 </li>
               </ul>
               <p>
