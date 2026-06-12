@@ -24,7 +24,35 @@ Copy `.env.example` to `.env.local`:
 
 Without `RESEND_API_KEY`, the contact form logs submissions in development only.
 
-## Deploy to Vercel
+## Analytics and social tracking
+
+Traffic is measured after visitors accept **analytics cookies**:
+
+- **Vercel Analytics** — page views in the Vercel dashboard
+- **Google Analytics 4** — traffic sources and UTM campaigns (set `NEXT_PUBLIC_GA_MEASUREMENT_ID`)
+
+### Test locally
+
+1. Copy `.env.example` to `.env.local`
+2. Optional: set `NEXT_PUBLIC_GA_MEASUREMENT_ID` and `NEXT_PUBLIC_ANALYTICS_DEV=true`
+3. Run `npm run dev`, open the site, accept analytics cookies
+4. Open browser DevTools → Console — Vercel Analytics **debug** events appear on each page view
+5. Run `npm run test:utm` to verify UTM link helpers
+
+### Test on production
+
+1. Visit your live Vercel URL, accept analytics cookies, browse a few pages
+2. **Vercel** → Project → **Analytics** — data within ~30 seconds
+3. **GA4** → Reports → **Realtime** — active users while browsing
+
+### Share links with UTM tags
+
+Pre-built bio links are in `socialShareUrls` (`lib/site.ts`). On each blog post, use **Share this article** to copy platform-specific tracked links for Facebook, Instagram, LinkedIn, and WhatsApp.
+
+Example Instagram bio link:
+
+`https://www.essemdigital.com/?utm_source=instagram&utm_medium=social&utm_campaign=bio-link`
+
 
 1. Push this repo to GitHub
 2. Import the project at [vercel.com](https://vercel.com)

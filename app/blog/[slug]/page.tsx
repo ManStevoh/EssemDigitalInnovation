@@ -8,6 +8,7 @@ import { Footer } from '@/components/footer';
 import { MarkdownContent } from '@/components/markdown-content';
 import { BlogPostingJsonLd } from '@/components/json-ld';
 import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
+import { BlogSocialShare } from '@/components/blog-social-share';
 import { Button } from '@/components/ui/button';
 import { getAllSlugs, getPostBySlug } from '@/lib/blog';
 import { createPageMetadata } from '@/lib/seo';
@@ -76,6 +77,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           </p>
 
           <MarkdownContent content={post.content} />
+
+          <BlogSocialShare slug={post.slug} title={post.title} />
 
           <section className="mt-16 rounded-xl border border-border/60 bg-muted/30 p-8 sm:p-10">
             <h2 className="text-xl font-semibold mb-3">Ready to take the next step?</h2>

@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { isGa4Enabled } from '@/lib/analytics-env';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -20,14 +21,15 @@ function trackPageView(url: string) {
 export function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const enabled = isGa4Enabled();
 
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID) return;
+    if (!enabled || !GA_MEASUREMENT_ID) return;
     const query = searchParams.toString();
     trackPageView(query ? `${pathname}?${query}` : pathname);
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, enabled]);
 
-  if (!GA_MEASUREMENT_ID || process.env.NODE_ENV !== 'production') {
+  if (!enabled || !GA_MEASUREMENT_ID) {
     return null;
   }
 
