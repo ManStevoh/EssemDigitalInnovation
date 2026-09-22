@@ -22,6 +22,12 @@ export function Products() {
               RelayIQ is our first product under the company mission. Custom systems sit beside it
               when a business needs something unique.
             </p>
+            <Link
+              href="#contact"
+              className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[#0B1220] underline-offset-4 hover:underline"
+            >
+              Need a custom build? Talk to us <ArrowUpRight className="size-4" />
+            </Link>
           </div>
 
           <div className="overflow-hidden rounded-md border border-[#E7EAF0] lg:col-span-8">
@@ -46,7 +52,7 @@ export function Products() {
                 <ul className="mt-5 space-y-2">
                   {relay.highlights.map((item) => (
                     <li key={item} className="text-sm text-[#334155]">
-                      {item}
+                      • {item}
                     </li>
                   ))}
                 </ul>

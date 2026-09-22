@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { images, siteConfig } from '@/lib/site';
+import { images, siteConfig, trustChips } from '@/lib/site';
 
 export function About() {
   return (
@@ -13,6 +13,16 @@ export function About() {
             <h2 className="mt-4 max-w-[14ch] text-3xl font-semibold tracking-[-0.03em] text-[#0B1220] sm:text-4xl">
               Built for operators who need systems that work.
             </h2>
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {trustChips.map((chip) => (
+                <li
+                  key={chip}
+                  className="rounded-full border border-[#E7EAF0] bg-[#F7F8FA] px-3 py-1.5 text-xs font-medium text-[#475569]"
+                >
+                  {chip}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="lg:col-span-7">
@@ -31,15 +41,20 @@ export function About() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#94A3B8]">Vision</p>
                 <p className="mt-3 text-sm leading-6 text-[#334155]">{siteConfig.vision}</p>
               </div>
-              <div className="relative h-40 overflow-hidden rounded-md border border-[#E7EAF0] sm:h-auto">
-                <Image
-                  src={images.about}
-                  alt="East African small business context"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, 280px"
-                />
+              <div className="rounded-md border border-[#E7EAF0] bg-[#F7F8FA] p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#94A3B8]">Mission</p>
+                <p className="mt-3 text-sm leading-6 text-[#334155]">{siteConfig.mission}</p>
               </div>
+            </div>
+
+            <div className="relative mt-4 h-52 overflow-hidden rounded-md border border-[#E7EAF0] sm:h-64">
+              <Image
+                src={images.about}
+                alt="East African small business context"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 640px"
+              />
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUpRight, Globe2, Laptop, Smartphone, Workflow } from 'lucide-react';
+import { ArrowUpRight, Check, Globe2, Laptop, Smartphone, Workflow } from 'lucide-react';
 import { solutions } from '@/lib/site';
 
 const icons = {
@@ -54,10 +54,11 @@ export function Solutions() {
                   {solution.title}
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-[#64748B]">{solution.description}</p>
-                <ul className="mt-6 space-y-2 border-t border-[#E7EAF0] pt-5">
+                <ul className="mt-6 space-y-2.5 border-t border-[#E7EAF0] pt-5">
                   {solution.features.map((feature) => (
-                    <li key={feature} className="text-sm text-[#334155]">
-                      {feature}
+                    <li key={feature} className="flex items-start gap-2.5 text-sm text-[#334155]">
+                      <Check className="mt-0.5 size-4 shrink-0 text-[#10B981]" strokeWidth={2.25} />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { Mail, MapPin, Phone, Send, Linkedin, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { contactFormSchema } from '@/lib/contact-schema';
@@ -11,7 +10,6 @@ import {
   projectTypes,
   siteConfig,
 } from '@/lib/site';
-import { brandHoverClasses } from '@/lib/brand-guide';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -26,11 +24,8 @@ const initialFormData = {
   marketingConsent: false,
 };
 
-const selectClassName =
-  'w-full px-4 py-3 rounded-md border border-[#E8ECF2] bg-background text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
-
-const inputClassName =
-  'w-full px-4 py-3 rounded-md border border-[#E8ECF2] bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
+const fieldClass =
+  'w-full rounded-md border border-[#E8ECF2] bg-white px-4 py-3 text-[15px] text-[#0A0F1C] placeholder:text-[#94A3B8] focus:border-[#0A0F1C] focus:outline-none focus:ring-2 focus:ring-[#0A0F1C]/10';
 
 export function Contact() {
   const [formData, setFormData] = useState(initialFormData);
@@ -103,19 +98,23 @@ export function Contact() {
 
   return (
     <section id="contact" className="border-b border-[#E8ECF2] bg-white py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-2xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB] mb-3">Contact</p>
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#0A0F1C] mb-4">Start the conversation</h2>
-          <p className="text-lg text-foreground/70 leading-relaxed">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">
+            Contact
+          </p>
+          <h2 className="mb-4 text-3xl font-semibold tracking-[-0.03em] text-[#0A0F1C] sm:text-4xl">
+            Start the conversation
+          </h2>
+          <p className="text-lg leading-relaxed text-[#64748B]">
             Tell us about your project — type, budget, and timeline help us respond with a clearer
             proposal. We reply within one business day.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div className="space-y-8">
-            <h3 className="text-xl font-bold">Get in touch</h3>
+            <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#0A0F1C]">Get in touch</h3>
 
             {[
               {
@@ -132,7 +131,7 @@ export function Contact() {
               },
               {
                 icon: MessageCircle,
-                title: 'Live chat (WhatsApp)',
+                title: 'WhatsApp',
                 content: siteConfig.phone,
                 href: whatsappHref,
                 external: true,
@@ -146,30 +145,30 @@ export function Contact() {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="flex gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                    <Icon className="text-primary" size={20} />
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#0A0F1C] text-white">
+                    <Icon size={18} strokeWidth={1.75} />
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-0.5">{item.title}</h4>
+                    <h4 className="mb-0.5 font-semibold text-[#0A0F1C]">{item.title}</h4>
                     {item.href ? (
                       <a
                         href={item.href}
                         target={item.external ? '_blank' : undefined}
                         rel={item.external ? 'noopener noreferrer' : undefined}
-                        className={`text-foreground/70 ${brandHoverClasses.link}`}
+                        className="text-[#64748B] transition-colors hover:text-[#0A0F1C]"
                       >
                         {item.content}
                       </a>
                     ) : (
-                      <p className="text-foreground/70">{item.content}</p>
+                      <p className="text-[#64748B]">{item.content}</p>
                     )}
                   </div>
                 </div>
               );
             })}
 
-            <div className="pt-6 border-t border-border/40">
-              <h4 className="font-semibold mb-4">Follow us</h4>
+            <div className="border-t border-[#E8ECF2] pt-6">
+              <h4 className="mb-4 font-semibold text-[#0A0F1C]">Follow us</h4>
               <div className="flex gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
@@ -180,7 +179,7 @@ export function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className={`inline-flex items-center justify-center w-10 h-10 rounded-md border border-[#E8ECF2]/50 text-foreground/70 ${brandHoverClasses.link} ${brandHoverClasses.buttonBorder}`}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#E8ECF2] text-[#475569] transition-colors hover:border-[#0A0F1C] hover:text-[#0A0F1C]"
                     >
                       <Icon size={18} />
                     </a>
@@ -190,11 +189,11 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border/60 bg-background p-8 sm:p-10">
+          <div className="rounded-xl border border-[#E8ECF2] bg-[#F4F6F8] p-8 sm:p-10">
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
                     Name
                   </label>
                   <input
@@ -205,14 +204,14 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder="Your name"
                     aria-invalid={!!errors.name}
-                    className={inputClassName}
+                    className={fieldClass}
                     required
                   />
-                  {errors.name && <p className="text-sm text-destructive mt-1">{errors.name}</p>}
+                  {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
                     Email
                   </label>
                   <input
@@ -223,15 +222,15 @@ export function Contact() {
                     onChange={handleChange}
                     placeholder="you@company.com"
                     aria-invalid={!!errors.email}
-                    className={inputClassName}
+                    className={fieldClass}
                     required
                   />
-                  {errors.email && <p className="text-sm text-destructive mt-1">{errors.email}</p>}
+                  {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
                 </div>
               </div>
 
               <div>
-                <label htmlFor="projectType" className="block text-sm font-medium mb-2">
+                <label htmlFor="projectType" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
                   Project type
                 </label>
                 <select
@@ -240,7 +239,7 @@ export function Contact() {
                   value={formData.projectType}
                   onChange={handleChange}
                   aria-invalid={!!errors.projectType}
-                  className={selectClassName}
+                  className={fieldClass}
                   required
                 >
                   <option value="" disabled>
@@ -253,13 +252,13 @@ export function Contact() {
                   ))}
                 </select>
                 {errors.projectType && (
-                  <p className="text-sm text-destructive mt-1">{errors.projectType}</p>
+                  <p className="mt-1 text-sm text-red-600">{errors.projectType}</p>
                 )}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="budgetRange" className="block text-sm font-medium mb-2">
+                  <label htmlFor="budgetRange" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
                     Budget range
                   </label>
                   <select
@@ -268,11 +267,11 @@ export function Contact() {
                     value={formData.budgetRange}
                     onChange={handleChange}
                     aria-invalid={!!errors.budgetRange}
-                    className={selectClassName}
+                    className={fieldClass}
                     required
                   >
                     <option value="" disabled>
-                      Select budget
+                      Select a range
                     </option>
                     {budgetRanges.map((range) => (
                       <option key={range} value={range}>
@@ -281,12 +280,12 @@ export function Contact() {
                     ))}
                   </select>
                   {errors.budgetRange && (
-                    <p className="text-sm text-destructive mt-1">{errors.budgetRange}</p>
+                    <p className="mt-1 text-sm text-red-600">{errors.budgetRange}</p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="timeline" className="block text-sm font-medium mb-2">
+                  <label htmlFor="timeline" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
                     Timeline
                   </label>
                   <select
@@ -295,90 +294,81 @@ export function Contact() {
                     value={formData.timeline}
                     onChange={handleChange}
                     aria-invalid={!!errors.timeline}
-                    className={selectClassName}
+                    className={fieldClass}
                     required
                   >
                     <option value="" disabled>
-                      Select timeline
+                      Select a timeline
                     </option>
-                    {projectTimelines.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
+                    {projectTimelines.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
                       </option>
                     ))}
                   </select>
                   {errors.timeline && (
-                    <p className="text-sm text-destructive mt-1">{errors.timeline}</p>
+                    <p className="mt-1 text-sm text-red-600">{errors.timeline}</p>
                   )}
                 </div>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Project details
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
+                  Message
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Describe your goals, users, and any specific requirements..."
+                  placeholder="What do you need to digitize, automate, or launch online?"
                   rows={5}
                   aria-invalid={!!errors.message}
-                  className={`${inputClassName} resize-none`}
+                  className={fieldClass}
                   required
                 />
-                {errors.message && (
-                  <p className="text-sm text-destructive mt-1">{errors.message}</p>
-                )}
+                {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
               </div>
 
-              <label className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed cursor-pointer">
+              <label className="flex items-start gap-3 text-sm text-[#64748B]">
                 <input
                   type="checkbox"
                   name="marketingConsent"
                   checked={formData.marketingConsent}
                   onChange={handleChange}
-                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-border accent-primary"
+                  className="mt-1 size-4 rounded border-[#E8ECF2]"
                 />
-                <span>
-                  Send me updates, insights, and promotional offers from ESSEM Digital Innovations.{' '}
-                  <Link href="/privacy" className={`text-primary ${brandHoverClasses.link}`}>
-                    Privacy Policy
-                  </Link>
-                  .
-                </span>
+                <span>I agree to receive occasional updates about ESSEM products and services.</span>
               </label>
-
-              <Button
-                type="submit"
-                disabled={status === 'loading'}
-                className={`w-full bg-primary text-primary-foreground ${brandHoverClasses.button}`}
-              >
-                {status === 'loading' ? 'Sending...' : 'Send inquiry'}
-                <Send size={18} />
-              </Button>
 
               {statusMessage && (
                 <p
+                  className={`text-sm ${status === 'success' ? 'text-[#059669]' : 'text-red-600'}`}
                   role="status"
-                  className={`text-sm text-center ${status === 'success' ? 'text-secondary' : 'text-destructive'}`}
                 >
                   {statusMessage}
                 </p>
               )}
+
+              <Button
+                type="submit"
+                disabled={status === 'loading'}
+                className="h-12 w-full rounded-full bg-[#0A0F1C] text-[15px] font-medium text-white hover:bg-black disabled:opacity-60 sm:w-auto sm:px-8"
+              >
+                {status === 'loading' ? 'Sending…' : 'Send message'}
+                <Send className="size-4" />
+              </Button>
             </form>
           </div>
         </div>
 
-        <div className="rounded-xl overflow-hidden border border-border/60 h-64 sm:h-80">
+        <div className="overflow-hidden rounded-xl border border-[#E8ECF2]">
           <iframe
-            title={`${siteConfig.name} office location`}
+            title="ESSEM office map"
             src={siteConfig.mapEmbedUrl}
-            className="w-full h-full border-0"
+            className="h-64 w-full border-0 grayscale contrast-125 sm:h-80"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
           />
         </div>
       </div>

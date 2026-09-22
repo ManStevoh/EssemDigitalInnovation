@@ -5,6 +5,7 @@ import { About } from '@/components/about';
 import { Solutions } from '@/components/solutions';
 import { Products } from '@/components/products';
 import { Industries } from '@/components/industries';
+import { CtaBand } from '@/components/cta-band';
 import { Faq } from '@/components/faq';
 import { Contact } from '@/components/contact';
 import { Footer } from '@/components/footer';
@@ -22,6 +23,7 @@ export default function Page() {
         <Solutions />
         <Products />
         <Industries />
+        <CtaBand />
         <Faq />
         <Contact />
       </main>
