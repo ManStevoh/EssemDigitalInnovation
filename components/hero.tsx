@@ -1,136 +1,91 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { AnimatedCounter } from '@/components/animated-counter';
-import { heroStats, images, siteConfig } from '@/lib/site';
+import { images, siteConfig } from '@/lib/site';
 
 export function Hero() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationId: number;
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-
-    const particles = Array.from({ length: 16 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      radius: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.25 + 0.1,
-    }));
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        ctx.fillStyle = `rgba(37, 99, 235, ${p.opacity})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animate();
-    window.addEventListener('resize', resize);
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
-
   return (
-    <section className="relative flex items-center overflow-hidden pt-16 border-b border-border/40">
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        className="absolute inset-0 opacity-15 pointer-events-none"
-      />
+    <section className="relative overflow-hidden bg-white">
+      <div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-12 lg:px-8 lg:pt-14">
+        <div className="overflow-hidden rounded-[1.25rem] border border-[#E8ECF2] bg-[#F4F6F8]">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="flex flex-col justify-between px-6 py-10 sm:px-10 sm:py-14 lg:col-span-6 lg:px-12 lg:py-16">
+              <div>
+                <div className="mb-8 flex items-center gap-3">
+                  <span className="h-px w-8 bg-[#2563EB]" />
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#2563EB]">
+                    ESSEM Digital Innovations
+                  </p>
+                </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 sm:py-20 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div>
-            <p className="mb-6 text-sm text-muted-foreground">
-              Partnering with schools, institutions, government, NGOs, and business across East Africa
-            </p>
+                <h1 className="max-w-[12ch] text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#0A0F1C] sm:text-[3.25rem] lg:text-[3.85rem]">
+                  Infrastructure for modern business.
+                </h1>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight mb-4 leading-[1.12]">
-              <span className="text-secondary">Software, mobile apps, and digital growth for</span>{' '}
-              <span className="text-primary">ambitious organizations</span>
-            </h1>
+                <p className="mt-6 max-w-md text-[1.05rem] leading-8 text-[#526072]">
+                  We help companies digitize operations, automate work, and present themselves online
+                  with the clarity of a serious brand — not another generic agency site.
+                </p>
 
-            <p className="text-base font-medium text-secondary mb-6">
-              {siteConfig.brandTagline}
-            </p>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Button
+                    asChild
+                    className="h-12 rounded-full bg-[#0A0F1C] px-7 text-[15px] font-medium text-white hover:bg-black"
+                  >
+                    <Link href="#contact">
+                      Book a consultation
+                      <ArrowUpRight className="size-4" />
+                    </Link>
+                  </Button>
+                  <Link
+                    href="#products"
+                    className="group inline-flex items-center gap-2 text-[15px] font-medium text-[#0A0F1C]"
+                  >
+                    See RelayIQ
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
+              </div>
 
-            <p className="text-lg text-foreground/70 mb-8 max-w-xl leading-relaxed">
-              We partner with schools, universities, research institutions, government agencies,
-              NGOs, and businesses to deliver custom software, mobile apps, ICT support, digital
-              marketing, and specialized systems — built for real-world use across East Africa.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-12">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link href="#contact">
-                  Discuss your project
-                  <ArrowRight size={18} />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-border">
-                <Link href="#solutions">View our services</Link>
-              </Button>
+              <dl className="mt-14 grid grid-cols-3 gap-4 border-t border-[#E0E5EC] pt-8">
+                {[
+                  ['Automations', 'Workflows that remove friction'],
+                  ['Presence', 'Sites and apps with intent'],
+                  ['Products', 'Systems like RelayIQ'],
+                ].map(([dt, dd]) => (
+                  <div key={dt}>
+                    <dt className="text-sm font-semibold text-[#0A0F1C]">{dt}</dt>
+                    <dd className="mt-1 text-xs leading-5 text-[#6B7280]">{dd}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
 
-            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-border/40">
-              {heroStats.map((stat) => (
-                <div key={stat.label} className="min-w-0">
-                  <dt className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums leading-none">
-                    <span className="inline-flex items-baseline whitespace-nowrap">
-                      <AnimatedCounter end={stat.value} />
-                      {stat.suffix ? (
-                        <span className="text-primary">{stat.suffix}</span>
-                      ) : null}
-                    </span>
-                  </dt>
-                  <dd className="text-xs sm:text-sm text-muted-foreground mt-2 leading-snug">{stat.label}</dd>
+            <div className="relative min-h-[340px] lg:col-span-6 lg:min-h-[640px]">
+              <Image
+                src={images.hero}
+                alt="Operator running a modern business with digital tools"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1C]/50 via-[#0A0F1C]/5 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <div className="rounded-2xl border border-white/15 bg-white/10 p-5 text-white shadow-2xl backdrop-blur-xl">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6EE7B7]">
+                    {siteConfig.brandTagline}
+                  </p>
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-white/90">
+                    Mombasa-based. Built for East African businesses that want dependable digital
+                    systems — not theatre.
+                  </p>
                 </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50 bg-muted">
-            <Image
-              src={images.hero}
-              alt="African professionals celebrating project success at a modern office desk"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+              </div>
+            </div>
           </div>
         </div>
       </div>

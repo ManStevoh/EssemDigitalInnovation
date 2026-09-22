@@ -1,18 +1,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
-import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
-import { caseStudies, images } from '@/lib/site';
+import { Button } from '@/components/ui/button';
+import { PageIntro } from '@/components/page-intro';
 import { createPageMetadata } from '@/lib/seo';
-import { brandHoverClasses } from '@/lib/brand-guide';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Case Studies',
+  title: 'Work',
   description:
-    'See how ESSEM Digital Innovations helps schools, government agencies, NGOs, and businesses across East Africa modernize with custom software and digital solutions.',
+    'ESSEM case studies will be published here as we complete real client engagements. No invented proof.',
   path: '/case-studies',
 });
 
@@ -20,97 +18,38 @@ export default function CaseStudiesPage() {
   return (
     <>
       <Navigation />
-      <main id="main-content" className="pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <SeoBreadcrumbs items={[{ name: 'Case Studies', path: '/case-studies' }]} />
+      <main id="main-content">
+        <PageIntro
+          eyebrow="Work"
+          title="Proof will be earned in public."
+          description="We do not publish invented logos, fake metrics, or fictional case studies. As real engagements complete, detailed work stories will live here."
+          crumbs={[{ name: 'Work', path: '/case-studies' }]}
+        />
 
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">Case studies</h1>
-          <p className="text-lg text-foreground/70 max-w-2xl mb-16">
-            Real projects, measurable outcomes. Explore how we partner with organizations across East Africa.
-          </p>
-
-          <div className="space-y-16">
-            {caseStudies.map((study) => (
-              <article
-                key={study.slug}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start rounded-2xl border border-border/50 p-8 sm:p-10"
+        <section className="bg-white py-12 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="rounded-2xl border border-[#E8ECF2] bg-[#F4F6F8] px-8 py-14 text-center sm:px-12">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">
+                Coming soon
+              </p>
+              <h2 className="mx-auto mt-4 max-w-xl text-2xl font-semibold tracking-[-0.03em] text-[#0A0F1C] sm:text-3xl">
+                Want to be among the first documented engagements?
+              </h2>
+              <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-[#64748B]">
+                If you need digitization, automation, a website, an app, or RelayIQ, let’s talk.
+              </p>
+              <Button
+                asChild
+                className="mt-8 h-12 rounded-full bg-[#0A0F1C] px-7 text-sm text-white hover:bg-black"
               >
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted">
-                  <Image
-                    src={images.caseStudy}
-                    alt={`Case study: ${study.title} for ${study.client}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </div>
-
-                <div className="space-y-5">
-                  <div className="flex flex-wrap gap-2">
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                      {study.industry}
-                    </span>
-                    <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-                      {study.client}
-                    </span>
-                  </div>
-
-                  <h2 className="text-2xl sm:text-3xl font-bold">{study.title}</h2>
-                  <p className="text-foreground/70">{study.summary}</p>
-
-                  <div className="space-y-4 text-sm">
-                    <div>
-                      <h3 className="font-semibold mb-1">Challenge</h3>
-                      <p className="text-foreground/70">{study.challenge}</p>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mb-1">Solution</h3>
-                      <p className="text-foreground/70">{study.solution}</p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {study.results.map((result) => (
-                      <div key={result.label} className="rounded-lg border border-border/50 p-3 text-center">
-                        <p className="text-xl font-bold text-primary">{result.metric}</p>
-                        <p className="text-xs text-muted-foreground">{result.label}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <blockquote className="border-l-2 border-primary pl-4 italic text-foreground/80">
-                    &ldquo;{study.testimonial.quote}&rdquo;
-                    <footer className="text-sm text-muted-foreground not-italic mt-2">
-                      — {study.testimonial.author}, {study.testimonial.company}
-                    </footer>
-                  </blockquote>
-
-                  <Link
-                    href="/#contact"
-                    className={`inline-flex items-center gap-2 text-primary font-medium ${brandHoverClasses.link}`}
-                  >
-                    Start a similar project
-                    <ArrowRight size={16} />
-                  </Link>
-                </div>
-              </article>
-            ))}
+                <Link href="/#contact">
+                  Start a project
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
-
-          <div className="mt-16 rounded-2xl border border-border/50 bg-primary/5 p-8 sm:p-12 text-center">
-            <h2 className="text-2xl font-bold mb-3">Have a project in mind?</h2>
-            <p className="text-foreground/70 mb-6 max-w-lg mx-auto">
-              We&apos;re always looking for meaningful partnerships. Tell us about your challenge.
-            </p>
-            <Link
-              href="/#contact"
-              className={`inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground ${brandHoverClasses.button}`}
-            >
-              Get in touch
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
+        </section>
       </main>
       <Footer />
     </>

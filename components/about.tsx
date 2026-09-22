@@ -1,92 +1,48 @@
 'use client';
 
 import Image from 'next/image';
-import { Eye, Target } from 'lucide-react';
-import { ScrollFadeIn, ScrollStaggerContainer, StaggerChild } from '@/components/scroll-animations';
-import { focusAreas, images, siteConfig } from '@/lib/site';
+import { images, siteConfig } from '@/lib/site';
 
 export function About() {
   return (
-    <section id="about" className="py-20 sm:py-32 bg-muted/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
-          <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border/50 bg-muted">
-            <Image
-              src={images.about}
-              alt="African professionals in a technology strategy meeting"
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
-
-          <ScrollFadeIn>
-            <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">About us</p>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
-              A technology partner for institutions and organizations
+    <section id="about" className="border-b border-[#E7EAF0] bg-white py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">About ESSEM</p>
+            <h2 className="mt-4 max-w-[14ch] text-3xl font-semibold tracking-[-0.03em] text-[#0B1220] sm:text-4xl">
+              Built for operators who need systems that work.
             </h2>
-            <p className="text-lg text-foreground/70 mb-4 leading-relaxed">
-              ESSEM Digital Innovations is based in Mombasa and works with schools, universities,
-              research institutions, government agencies, NGOs, startups, and enterprises across
-              Kenya and East Africa. We deliver software, mobile apps, ICT support, and digital
-              marketing with the same standard of professionalism — whether you are a school going
-              online, a research body managing data, or an agency modernizing public services.
-            </p>
-            <p className="text-foreground/70 leading-relaxed">
-              Our work is grounded in clear communication, defined deliverables, and systems
-              built to function in real operating environments — not just in presentations.
-            </p>
-          </ScrollFadeIn>
-        </div>
-
-        <ScrollStaggerContainer>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            <StaggerChild>
-              <div className="rounded-xl border border-border/60 bg-background p-8 h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Eye className="text-primary" size={20} aria-hidden />
-                  </div>
-                  <h3 className="text-xl font-semibold tracking-tight">Our vision</h3>
-                </div>
-                <p className="text-foreground/70 leading-relaxed">
-                  {siteConfig.vision}
-                </p>
-              </div>
-            </StaggerChild>
-            <StaggerChild>
-              <div className="rounded-xl border border-border/60 bg-background p-8 h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center">
-                    <Target className="text-secondary" size={20} aria-hidden />
-                  </div>
-                  <h3 className="text-xl font-semibold tracking-tight">Our mission</h3>
-                </div>
-                <p className="text-foreground/70 leading-relaxed">
-                  {siteConfig.mission}
-                </p>
-              </div>
-            </StaggerChild>
           </div>
-        </ScrollStaggerContainer>
 
-        <ScrollFadeIn>
-          <div className="rounded-xl border border-border/60 bg-background p-8 sm:p-10">
-            <h3 className="text-2xl font-semibold mb-8 tracking-tight">Who we work with</h3>
-            <div className="space-y-6">
-              {focusAreas.map((item) => (
-                <div
-                  key={item.area}
-                  className="flex flex-col sm:flex-row gap-2 sm:gap-8 pb-6 last:pb-0 border-b border-border/30 last:border-0"
-                >
-                  <div className="text-foreground font-medium sm:min-w-48 sm:max-w-48">{item.area}</div>
-                  <p className="text-foreground/70 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
+          <div className="lg:col-span-7">
+            <p className="text-lg leading-8 text-[#475569]">
+              Too many businesses still run on manual processes and weak digital setup. Work slows
+              down, customers get inconsistent service, and growth costs more effort than it should.
+            </p>
+            <p className="mt-5 text-lg leading-8 text-[#475569]">
+              ESSEM helps businesses digitize, automate, and show up online — through systems,
+              websites, apps, and smart automations. Based in {siteConfig.location}, we design for
+              real operating environments.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="rounded-md border border-[#E7EAF0] bg-[#F7F8FA] p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#94A3B8]">Vision</p>
+                <p className="mt-3 text-sm leading-6 text-[#334155]">{siteConfig.vision}</p>
+              </div>
+              <div className="relative h-40 overflow-hidden rounded-md border border-[#E7EAF0] sm:h-auto">
+                <Image
+                  src={images.about}
+                  alt="East African small business context"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 280px"
+                />
+              </div>
             </div>
           </div>
-        </ScrollFadeIn>
+        </div>
       </div>
     </section>
   );

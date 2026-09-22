@@ -1,38 +1,32 @@
 import { faqs } from '@/lib/site';
-import { cn } from '@/lib/utils';
 
 export function Faq() {
   return (
-    <section id="faq" className="py-20 sm:py-32 bg-muted/30">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">FAQ</p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Common questions</h2>
-          <p className="text-foreground/70">
-            Straight answers about how we work, who we serve, and how to get started.
+    <section id="faq" className="border-b border-[#E8ECF2] bg-[#F4F6F8] py-16 sm:py-20">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+        <div className="lg:col-span-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">FAQ</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-[#0A0F1C] sm:text-4xl">
+            Clear answers before you commit.
+          </h2>
+          <p className="mt-4 text-base leading-7 text-[#64748B]">
+            Straight talk on what ESSEM does, who we serve, and how engagement starts.
           </p>
         </div>
 
-        <div className="space-y-3">
-          {faqs.map((faq, index) => (
+        <div className="space-y-3 lg:col-span-8">
+          {faqs.map((faq) => (
             <details
               key={faq.question}
-              className={cn(
-                'group rounded-xl border border-border/60 bg-background overflow-hidden',
-                'open:shadow-sm'
-              )}
-              open={index === 0}
+              className="group rounded-xl border border-[#E8ECF2] bg-white open:shadow-[0_12px_40px_rgba(15,23,42,0.06)]"
             >
-              <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left font-medium hover:bg-muted/40 transition-colors [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left text-[15px] font-medium text-[#0A0F1C] [&::-webkit-details-marker]:hidden">
                 {faq.question}
-                <span
-                  className="shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
-                  aria-hidden
-                >
-                  ▾
+                <span className="text-[#94A3B8] transition-transform group-open:rotate-45" aria-hidden>
+                  +
                 </span>
               </summary>
-              <div className="px-5 pb-4 text-sm text-foreground/70 leading-relaxed border-t border-border/40 pt-3">
+              <div className="border-t border-[#E8ECF2] px-5 py-4 text-sm leading-7 text-[#526072]">
                 {faq.answer}
               </div>
             </details>

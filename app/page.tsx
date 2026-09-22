@@ -2,9 +2,8 @@ import { Navigation } from '@/components/navigation';
 import { Hero } from '@/components/hero';
 import { ClientLogos } from '@/components/client-logos';
 import { About } from '@/components/about';
-import { CoreValues } from '@/components/core-values';
 import { Solutions } from '@/components/solutions';
-import { CaseStudy } from '@/components/case-study';
+import { Products } from '@/components/products';
 import { Industries } from '@/components/industries';
 import { Faq } from '@/components/faq';
 import { Contact } from '@/components/contact';
@@ -20,9 +19,8 @@ export default function Page() {
         <Hero />
         <ClientLogos />
         <About />
-        <CoreValues />
         <Solutions />
-        <CaseStudy />
+        <Products />
         <Industries />
         <Faq />
         <Contact />

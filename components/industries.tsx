@@ -1,43 +1,29 @@
 'use client';
 
-import { ScrollFadeIn, ScrollStaggerContainer, StaggerChild } from '@/components/scroll-animations';
-import { industries } from '@/lib/site';
-import { brandHoverClasses } from '@/lib/brand-guide';
+import { audiences } from '@/lib/site';
 
 export function Industries() {
   return (
-    <section id="industries" className="py-20 sm:py-32 bg-muted/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollFadeIn>
-          <div className="mb-16 max-w-3xl">
-            <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">Industries</p>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">
-              Sector experience that informs better delivery
-            </h2>
-            <p className="text-lg text-foreground/70 leading-relaxed">
-              We adapt our approach to the regulations, workflows, and realities of each sector —
-              from schools and research institutions to government agencies, NGOs, startups, and
-              field-based operations.
-            </p>
-          </div>
-        </ScrollFadeIn>
+    <section id="audiences" className="border-b border-[#E7EAF0] bg-[#F7F8FA] py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">Who we serve</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-[#0B1220] sm:text-4xl">
+            For businesses ready to professionalize operations.
+          </h2>
+        </div>
 
-        <ScrollStaggerContainer>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {industries.map((industry) => (
-              <StaggerChild key={industry.title}>
-                <article className="industry-card group cursor-default">
-                    <h3 className={`mb-2 text-base font-semibold tracking-tight text-foreground ${brandHoverClasses.cardTitle}`}>
-                    {industry.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:text-foreground/80">
-                    {industry.description}
-                  </p>
-                </article>
-              </StaggerChild>
-            ))}
-          </div>
-        </ScrollStaggerContainer>
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {audiences.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-md border border-[#E7EAF0] bg-white p-6"
+            >
+              <h3 className="text-base font-semibold text-[#0B1220]">{item.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-[#64748B]">{item.description}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

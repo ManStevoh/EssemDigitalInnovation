@@ -19,11 +19,11 @@ export default function TermsPage() {
   return (
     <>
       <Navigation />
-      <main id="main-content" className="pt-16">
+      <main id="main-content" className="">
         <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <SeoBreadcrumbs items={[{ name: 'Terms of Service', path: '/terms' }]} />
 
-          <h1 className="text-4xl font-bold tracking-tight mb-2">Terms of Service</h1>
+          <h1 className="text-4xl font-semibold tracking-[-0.03em] text-[#0A0F1C] mb-2">Terms of Service</h1>
           <p className="text-muted-foreground text-sm mb-10">
             Last updated: {lastUpdated}
           </p>

@@ -27,10 +27,10 @@ const initialFormData = {
 };
 
 const selectClassName =
-  'w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
+  'w-full px-4 py-3 rounded-md border border-[#E8ECF2] bg-background text-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
 
 const inputClassName =
-  'w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
+  'w-full px-4 py-3 rounded-md border border-[#E8ECF2] bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20';
 
 export function Contact() {
   const [formData, setFormData] = useState(initialFormData);
@@ -102,11 +102,11 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 sm:py-32">
+    <section id="contact" className="border-b border-[#E8ECF2] bg-white py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 max-w-2xl mx-auto">
-          <p className="text-sm font-medium text-primary mb-3 uppercase tracking-wider">Contact</p>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Start the conversation</h2>
+        <div className="mb-10 max-w-2xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB] mb-3">Contact</p>
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#0A0F1C] mb-4">Start the conversation</h2>
           <p className="text-lg text-foreground/70 leading-relaxed">
             Tell us about your project — type, budget, and timeline help us respond with a clearer
             proposal. We reply within one business day.
@@ -180,7 +180,7 @@ export function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className={`inline-flex items-center justify-center w-10 h-10 rounded-lg border border-border/50 text-foreground/70 ${brandHoverClasses.link} ${brandHoverClasses.buttonBorder}`}
+                      className={`inline-flex items-center justify-center w-10 h-10 rounded-md border border-[#E8ECF2]/50 text-foreground/70 ${brandHoverClasses.link} ${brandHoverClasses.buttonBorder}`}
                     >
                       <Icon size={18} />
                     </a>

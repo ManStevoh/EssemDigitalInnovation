@@ -1,31 +1,24 @@
-import { clientLogos, partnerSectors } from '@/lib/site';
-
 export function ClientLogos() {
+  const items = [
+    { k: '01', t: 'Discovery', d: 'Understand the operation before proposing tools.' },
+    { k: '02', t: 'Build', d: 'Ship systems, sites, and automations with clear scope.' },
+    { k: '03', t: 'Launch', d: 'Go live with training, handover, and support paths.' },
+    { k: '04', t: 'Improve', d: 'Refine from real usage — not slide-deck theory.' },
+  ];
+
   return (
-    <section aria-label="Trusted by" className="border-y border-border/40 bg-muted/30 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wider">
-          Trusted partners across East Africa
-        </p>
-        <p className="text-center text-xs text-muted-foreground/80 mb-8 max-w-2xl mx-auto">
-          Working with {partnerSectors}
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-center">
-          {clientLogos.map((client) => (
-            <div
-              key={client.name}
-              className="flex flex-col items-center gap-2 text-center"
-              title={client.name}
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-border/50 bg-background text-sm font-bold text-primary">
-                {client.initials}
-              </div>
-              <span className="text-xs text-muted-foreground leading-tight max-w-[8rem]">
-                {client.name}
-              </span>
-            </div>
-          ))}
-        </div>
+    <section className="border-b border-[#E7EAF0] bg-white">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((item, i) => (
+          <div
+            key={item.k}
+            className={`px-4 py-8 sm:px-6 lg:px-8 ${i < items.length - 1 ? 'border-b border-[#E7EAF0] sm:border-b-0 lg:border-r' : ''} ${i % 2 === 0 ? 'sm:border-r lg:border-r' : ''} ${i < 2 ? 'sm:border-b lg:border-b-0' : ''}`}
+          >
+            <p className="text-[11px] font-semibold tracking-[0.22em] text-[#94A3B8]">{item.k}</p>
+            <p className="mt-3 text-base font-semibold text-[#0B1220]">{item.t}</p>
+            <p className="mt-2 text-sm leading-6 text-[#64748B]">{item.d}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

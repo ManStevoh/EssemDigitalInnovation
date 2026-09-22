@@ -1,19 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
-import { SeoBreadcrumbs } from '@/components/seo-breadcrumbs';
+import { PageIntro } from '@/components/page-intro';
 import { getAllPosts } from '@/lib/blog';
 import { createPageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/lib/site';
-import { brandHoverClasses } from '@/lib/brand-guide';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Insights & Blog',
+  title: 'Insights',
   description:
-    'Practical insights on software development, mobile apps, ICT infrastructure, and digital marketing for East African businesses and institutions.',
+    'Practical writing on digitization, automation, websites, apps, and digital operations for East African businesses.',
   path: '/blog',
 });
 
@@ -23,47 +22,43 @@ export default function BlogPage() {
   return (
     <>
       <Navigation />
-      <main id="main-content" className="pt-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <SeoBreadcrumbs items={[{ name: 'Blog', path: '/blog' }]} />
+      <main id="main-content">
+        <PageIntro
+          eyebrow="Insights"
+          title="Notes from building digital systems."
+          description={`Perspectives from the ${siteConfig.shortName} team on software, automation, and online presence for operators across East Africa.`}
+          crumbs={[{ name: 'Insights', path: '/blog' }]}
+        />
 
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">Insights & Blog</h1>
-          <p className="text-lg text-foreground/70 mb-12 max-w-2xl">
-            Practical perspectives on software, mobile development, startup ICT, and digital growth
-            from the {siteConfig.shortName} team in Mombasa.
-          </p>
-
-          <div className="space-y-6">
-            {posts.map((post) => (
-              <article
-                key={post.slug}
-                className="rounded-xl border border-border/60 bg-background p-6 sm:p-8 hover:border-primary/30 transition-colors"
-              >
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                    {post.category}
-                  </span>
-                  <time dateTime={post.date} className="text-xs text-muted-foreground">
-                    {format(new Date(post.date), 'd MMMM yyyy')}
-                  </time>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-semibold tracking-tight mb-2">
-                  <Link href={`/blog/${post.slug}`} className={brandHoverClasses.link}>
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className="text-foreground/70 mb-4 leading-relaxed">{post.description}</p>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className={`inline-flex items-center gap-2 text-sm font-medium text-primary ${brandHoverClasses.link}`}
+        <section className="bg-white py-12 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <article
+                  key={post.slug}
+                  className="group flex flex-col rounded-xl border border-[#E8ECF2] bg-[#F4F6F8] p-6 transition-colors hover:border-[#CBD5E1] hover:bg-white"
                 >
-                  Read article
-                  <ArrowRight size={16} />
-                </Link>
-              </article>
-            ))}
+                  <time className="text-xs font-medium uppercase tracking-[0.16em] text-[#94A3B8]">
+                    {format(new Date(post.date), 'dd MMM yyyy')}
+                  </time>
+                  <h2 className="mt-4 text-xl font-semibold tracking-[-0.02em] text-[#0A0F1C]">
+                    <Link href={`/blog/${post.slug}`} className="hover:text-[#2563EB]">
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-[#64748B]">{post.description}</p>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[#0A0F1C]"
+                  >
+                    Read article
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
       </main>
       <Footer />
     </>

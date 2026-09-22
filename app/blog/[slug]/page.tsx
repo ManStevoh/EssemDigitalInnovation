@@ -52,7 +52,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     <>
       <BlogPostingJsonLd post={post} />
       <Navigation />
-      <main id="main-content" className="pt-16">
+      <main id="main-content" className="">
         <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <SeoBreadcrumbs
             items={[
