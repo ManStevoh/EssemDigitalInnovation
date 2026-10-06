@@ -4,6 +4,14 @@ import { CookieSettingsLink } from '@/components/cookie-settings-link';
 import { Logo } from '@/components/logo';
 import { NewsletterSignup } from '@/components/newsletter-signup';
 import { siteConfig, solutions } from '@/lib/site';
+import { getWhatsAppUrl } from '@/lib/whatsapp';
+
+const serviceRoutes = [
+  '/services/automations',
+  '/services/digitization',
+  '/services/online-presence',
+  '/services/websites-and-apps',
+] as const;
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -46,10 +54,41 @@ export function Footer() {
           <div className="md:col-span-2">
             <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Services</h4>
             <ul className="mt-4 space-y-2.5">
-              {solutions.map((item) => (
+              {solutions.map((item, index) => (
                 <li key={item.title}>
-                  <Link href="/#solutions" className="text-sm text-white/70 hover:text-white">
+                  <Link
+                    href={serviceRoutes[index] ?? '/#solutions'}
+                    className="text-sm text-white/70 hover:text-white"
+                  >
                     {item.title}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="https://relayiq.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white/70 hover:text-white"
+                >
+                  RelayIQ
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-2">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Solutions</h4>
+            <ul className="mt-4 space-y-2.5">
+              {[
+                { label: 'SME owners', href: '/#audiences' },
+                { label: 'Retail & services', href: '/#audiences' },
+                { label: 'Teams going digital', href: '/#audiences' },
+                { label: 'Founders', href: '/#audiences' },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="text-sm text-white/70 hover:text-white">
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -61,10 +100,11 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {[
                 { label: 'About', href: '/#about' },
-                { label: 'Products', href: '/#products' },
+                { label: 'Our work', href: '/#products' },
                 { label: 'Work', href: '/case-studies' },
                 { label: 'Blog', href: '/blog' },
                 { label: 'Careers', href: '/careers' },
+                { label: 'Contact', href: '/#contact' },
                 { label: 'Privacy', href: '/privacy' },
                 { label: 'Terms', href: '/terms' },
               ].map((item) => (
@@ -80,9 +120,20 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-4">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Contact</h4>
+          <div className="md:col-span-2">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Get in touch</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-white/70">
+              <li>Mon–Sat, 8am–6pm EAT</li>
+              <li>
+                <a
+                  href={getWhatsAppUrl('Hello ESSEM! I found your website and would like to discuss a project.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white"
+                >
+                  Chat on WhatsApp
+                </a>
+              </li>
               <li>
                 <a href={`mailto:${siteConfig.email}`} className="hover:text-white">
                   {siteConfig.email}
@@ -95,19 +146,27 @@ export function Footer() {
               </li>
               <li>{siteConfig.location}</li>
             </ul>
-            <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-5">
-              <p className="text-sm font-medium text-white">Stay informed</p>
-              <p className="mt-1 text-xs text-white/55">Occasional updates on products and delivery.</p>
-              <div className="mt-4">
-                <NewsletterSignup />
-              </div>
+          </div>
+        </div>
+
+        <div className="mt-12 rounded-xl border border-white/10 bg-white/5 p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-medium text-white">Stay connected</p>
+              <p className="mt-1 text-xs text-white/55">
+                Get updates on new projects, tech tips, and company news.
+              </p>
+            </div>
+            <div className="w-full max-w-sm">
+              <NewsletterSignup />
             </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {currentYear} {siteConfig.name}. All rights reserved.
+            © {currentYear} {siteConfig.name}. All rights reserved. Mwembe Tayari, Mombasa —
+            Serving Kenya & East Africa (incl. Nairobi-remote).
           </p>
           <p>Mombasa · East Africa</p>
         </div>

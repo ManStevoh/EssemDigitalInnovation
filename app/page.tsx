@@ -1,10 +1,12 @@
 import { Navigation } from '@/components/navigation';
 import { Hero } from '@/components/hero';
+import { PainPoints } from '@/components/pain-points';
 import { ClientLogos } from '@/components/client-logos';
 import { About } from '@/components/about';
 import { Solutions } from '@/components/solutions';
 import { Products } from '@/components/products';
 import { Industries } from '@/components/industries';
+import { Process } from '@/components/process';
 import { CtaBand } from '@/components/cta-band';
 import { Faq } from '@/components/faq';
 import { Contact } from '@/components/contact';
@@ -18,11 +20,13 @@ export default function Page() {
       <Navigation />
       <main id="main-content">
         <Hero />
-        <ClientLogos />
-        <About />
+        <PainPoints />
         <Solutions />
         <Products />
+        <ClientLogos />
         <Industries />
+        <About />
+        <Process />
         <CtaBand />
         <Faq />
         <Contact />

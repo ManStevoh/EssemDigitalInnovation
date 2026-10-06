@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
 import { navLinks } from '@/lib/site';
@@ -31,9 +31,12 @@ export function Navigation() {
           <Button
             asChild
             size="sm"
-            className="h-10 rounded-md bg-[#0B1220] px-4 text-[13px] font-medium text-white hover:bg-[#111827]"
+            className="h-10 rounded-full bg-[#0B1220] px-5 text-[13px] font-medium text-white hover:bg-black"
           >
-            <Link href="/#contact">Talk to us</Link>
+            <Link href="/#contact">
+              Get quote
+              <ArrowRight className="size-3.5" />
+            </Link>
           </Button>
         </div>
 
@@ -59,9 +62,13 @@ export function Navigation() {
               {link.label}
             </Link>
           ))}
-          <Button asChild className="mt-3 w-full rounded-md bg-[#0B1220] text-white">
+          <Button
+            asChild
+            className="mt-3 w-full rounded-full bg-[#0B1220] text-white"
+          >
             <Link href="/#contact" onClick={() => setIsOpen(false)}>
-              Talk to us
+              Get quote
+              <ArrowRight className="size-4" />
             </Link>
           </Button>
         </div>

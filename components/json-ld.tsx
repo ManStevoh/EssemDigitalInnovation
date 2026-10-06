@@ -1,6 +1,7 @@
 import { siteConfig, brand, faqs } from '@/lib/site';
 import { ORGANIZATION_ID, WEBSITE_ID, absoluteUrl, jsonLdScript } from '@/lib/seo';
 import type { BlogPostMeta } from '@/lib/blog';
+import type { Faq, ServicePageContent } from '@/lib/services-content';
 
 function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
@@ -52,13 +53,11 @@ export function OrganizationJsonLd() {
       { '@type': 'AdministrativeArea', name: 'East Africa' },
     ],
     serviceType: [
-      'Software Development',
-      'Mobile App Development',
-      'Education Technology',
-      'Government Digital Services',
-      'NGO Programme Systems',
-      'Digital Marketing',
-      'ICT Support',
+      'Automations',
+      'Digitization',
+      'Online presence',
+      'Websites and apps',
+      'RelayIQ setup',
     ],
     sameAs: Object.values(siteConfig.social),
     knowsAbout: [
@@ -152,6 +151,51 @@ export function BlogPostingJsonLd({ post }: { post: BlogPostMeta }) {
     image: absoluteUrl('/opengraph-image'),
     inLanguage: 'en-KE',
     articleSection: post.category,
+  };
+
+  return <JsonLd data={data} />;
+}
+
+export function PerPageFaqJsonLd({ faqs: pageFaqs }: { faqs: Faq[] }) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: pageFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
+
+  return <JsonLd data={data} />;
+}
+
+export function ServiceJsonLd({ content }: { content: ServicePageContent }) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: content.h1,
+    provider: { '@id': ORGANIZATION_ID },
+    areaServed: ['KE'],
+    description: content.subhead,
+  };
+
+  return <JsonLd data={data} />;
+}
+
+export function ProductJsonLd() {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': ['Product', 'SoftwareApplication'],
+    name: 'RelayIQ',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'KES' },
+    url: 'https://relayiq.app',
+    manufacturer: { '@id': ORGANIZATION_ID },
   };
 
   return <JsonLd data={data} />;
