@@ -61,8 +61,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             ]}
           />
 
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+          <div className="mb-4 flex flex-wrap items-center gap-3">
+            <span className="rounded-sm border-l-2 border-[#10B981] bg-[#EFF6FF] px-3 py-1 text-xs font-semibold text-[#2563EB]">
               {post.category}
             </span>
             <time dateTime={post.date} className="text-sm text-muted-foreground">
@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             </time>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">{post.title}</h1>
+          <h1 className="mb-4 text-3xl font-bold leading-tight text-[#0F172A] sm:text-4xl">{post.title}</h1>
           <p className="text-lg text-foreground/70 mb-8 leading-relaxed">{post.description}</p>
           <p className="text-sm text-muted-foreground mb-10 pb-10 border-b border-border/40">
             By {post.author}
@@ -80,20 +80,20 @@ export default async function BlogPostPage({ params }: PageProps) {
 
           <BlogSocialShare slug={post.slug} title={post.title} />
 
-          <section className="mt-16 rounded-xl border border-border/60 bg-muted/30 p-8 sm:p-10">
-            <h2 className="text-xl font-semibold mb-3">Ready to take the next step?</h2>
+          <section className="mt-16 rounded-md border border-[#DDE3EA] border-l-4 border-l-[#10B981] bg-[#F4F6F8] p-6 sm:p-8">
+            <h2 className="mb-3 text-xl font-bold text-[#0F172A]">Ready to take the next step?</h2>
             <p className="text-foreground/70 mb-6 leading-relaxed">
               Whether you need custom software, mobile apps, ICT support, or digital marketing,{' '}
               {siteConfig.shortName} can help. Tell us about your project.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button asChild className="rounded-md bg-[#2563EB] text-white hover:bg-[#1D4ED8]">
                 <Link href="/#contact">
                   Discuss your project
                   <ArrowRight size={16} />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="border-primary/30 text-primary">
+              <Button asChild variant="outline" className="rounded-md border-[#2563EB] text-[#2563EB] hover:bg-[#EFF6FF]">
                 <a href={contactUrl} target="_blank" rel="noopener noreferrer">
                   Chat on WhatsApp
                 </a>

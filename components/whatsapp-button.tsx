@@ -10,10 +10,10 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Live chat on WhatsApp — +254 728 210 962"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] pl-4 pr-5 py-3 text-white shadow-lg hover:bg-[#20BD5A] transition-colors"
+      className="fixed bottom-4 right-4 z-50 flex size-12 items-center justify-center rounded-md bg-[#25D366] text-white shadow-md transition-colors hover:bg-[#20BD5A] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0F172A] sm:bottom-6 sm:right-6 sm:h-12 sm:w-auto sm:gap-2 sm:px-4 sm:py-3"
     >
       <MessageCircle size={22} aria-hidden className="shrink-0" />
-      <span className="flex flex-col leading-tight">
+      <span className="hidden flex-col leading-tight sm:flex">
         <span className="text-sm font-semibold">Live chat</span>
         <span className="text-[10px] font-medium opacity-90 hidden sm:block">WhatsApp</span>
       </span>

@@ -24,26 +24,26 @@ const serviceKeys = ['automations', 'digitization', 'online-presence', 'websites
 
 export function Solutions() {
   return (
-    <section id="solutions" className="border-y border-[#E7EAF0] bg-[#F7F8FA] py-16 sm:py-20">
+    <section id="solutions" className="border-y border-[#DDE3EA] bg-[#F4F6F8] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">
+        <p className="text-sm font-bold text-[#2563EB]">
           What we do
         </p>
         <div className="mt-4 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
-            <h2 className="text-3xl font-semibold tracking-[-0.03em] text-[#0B1220] sm:text-4xl">
+            <h2 className="text-3xl font-bold text-[#0F172A] sm:text-4xl">
               Everything your business needs to grow digitally
             </h2>
-            <p className="mt-4 max-w-xl text-base leading-7 text-[#64748B]">
+            <p className="mt-4 max-w-xl text-base leading-7 text-[#475569]">
               From automations to brand presence — four focused offers, one team. No inflated
               agency menu.
             </p>
           </div>
           <Link
             href="#contact"
-            className="inline-flex items-center gap-1 text-sm font-medium text-[#0B1220] underline-offset-4 hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-[#2563EB] underline-offset-4 hover:underline"
           >
-            View all services <ArrowUpRight className="size-4" />
+            Get a free quote <ArrowUpRight className="size-4" />
           </Link>
         </div>
 
@@ -56,20 +56,19 @@ export function Solutions() {
             return (
               <article
                 key={solution.title}
-                className="group rounded-xl border border-[#E7EAF0] bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-[#CBD5E1] hover:shadow-[0_16px_40px_rgba(15,23,42,0.08)]"
+                className="group rounded-md border border-[#DDE3EA] border-t-2 border-t-[#10B981] bg-white p-6 transition-colors hover:border-[#2563EB]"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div className="inline-flex size-11 items-center justify-center rounded-md bg-[#0B1220] text-white transition-colors group-hover:bg-[#2563EB]">
+                  <div className="inline-flex size-11 items-center justify-center rounded-md bg-[#2563EB] text-white">
                     <Icon className="size-5" strokeWidth={1.75} />
                   </div>
-                  <span className="text-sm font-medium tabular-nums text-[#94A3B8]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
                 </div>
-                <h3 className="mt-6 text-xl font-semibold tracking-[-0.02em] text-[#0B1220]">
-                  {solution.title}
+                <h3 className="mt-5 text-xl font-bold text-[#0F172A]">
+                  <Link href={route} className="transition-colors hover:text-[#2563EB]">
+                    {solution.title}
+                  </Link>
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-[#64748B]">{solution.description}</p>
+                <p className="mt-3 text-sm leading-6 text-[#475569]">{solution.description}</p>
                 <ul className="mt-6 space-y-2.5 border-t border-[#E7EAF0] pt-5">
                   {solution.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5 text-sm text-[#334155]">
@@ -81,7 +80,7 @@ export function Solutions() {
                 <div className="mt-6 flex flex-wrap items-center gap-4">
                   <Link
                     href={route}
-                    className="inline-flex items-center gap-1 text-sm font-medium text-[#2563EB] underline-offset-4 hover:underline"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#2563EB] underline-offset-4 hover:underline"
                   >
                     Learn more <ArrowUpRight className="size-4" />
                   </Link>
@@ -89,7 +88,7 @@ export function Solutions() {
                     href={waHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-[#0B1220] underline-offset-4 hover:underline"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#475569] underline-offset-4 hover:text-[#2563EB] hover:underline"
                   >
                     WhatsApp <ArrowUpRight className="size-4" />
                   </a>

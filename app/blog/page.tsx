@@ -30,26 +30,26 @@ export default function BlogPage() {
           crumbs={[{ name: 'Insights', path: '/blog' }]}
         />
 
-        <section className="bg-white py-12 sm:py-16">
+        <section className="bg-white py-14 sm:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (
                 <article
                   key={post.slug}
-                  className="group flex flex-col rounded-xl border border-[#E8ECF2] bg-[#F4F6F8] p-6 transition-colors hover:border-[#CBD5E1] hover:bg-white"
+                  className="group flex flex-col rounded-md border border-[#DDE3EA] border-t-2 border-t-[#10B981] bg-white p-5 transition-colors hover:border-[#2563EB] sm:p-6"
                 >
                   <time className="text-xs font-medium uppercase tracking-[0.16em] text-[#94A3B8]">
                     {format(new Date(post.date), 'dd MMM yyyy')}
                   </time>
-                  <h2 className="mt-4 text-xl font-semibold tracking-[-0.02em] text-[#0A0F1C]">
+                    <h2 className="mt-4 text-xl font-bold text-[#0F172A]">
                     <Link href={`/blog/${post.slug}`} className="hover:text-[#2563EB]">
                       {post.title}
                     </Link>
                   </h2>
-                  <p className="mt-3 flex-1 text-sm leading-6 text-[#64748B]">{post.description}</p>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-[#475569]">{post.description}</p>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[#0A0F1C]"
+                    className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-[#2563EB]"
                   >
                     Read article
                     <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const steps = [
   {
@@ -31,35 +30,39 @@ export function Process() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">
-          Our process
+        <p className="text-sm font-bold text-[#2563EB]">
+          How we work
         </p>
         <div className="mt-4 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.03em] text-[#0B1220] sm:text-4xl">
-            From first conversation to launch — simple and transparent
+          <h2 className="max-w-xl text-3xl font-bold text-[#0F172A] sm:text-4xl">
+            A clear path from conversation to live systems.
           </h2>
-          <Button
-            asChild
-            className="h-11 w-fit rounded-full bg-[#0A0F1C] px-6 text-sm font-medium text-white hover:bg-black"
-          >
-            <Link href="#contact">
-              Start your project
-              <ArrowRight className="size-4" />
-            </Link>
-          </Button>
+          <p className="max-w-sm text-[15px] leading-7 text-[#475569]">
+            No mystery process. Four steps we actually use with every engagement.
+          </p>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step) => (
             <article
               key={step.n}
-              className="rounded-xl border border-[#E7EAF0] bg-[#F7F8FA] p-6 transition-colors hover:border-[#CBD5E1] hover:bg-white"
+              className="rounded-md border border-[#DDE3EA] border-l-2 border-l-[#2563EB] bg-[#F4F6F8] p-5 transition-colors hover:bg-white"
             >
               <p className="text-[11px] font-semibold tracking-[0.22em] text-[#2563EB]">{step.n}</p>
-              <h3 className="mt-3 text-base font-semibold text-[#0B1220]">{step.title}</h3>
-              <p className="mt-2 text-sm leading-6 text-[#64748B]">{step.body}</p>
+              <h3 className="mt-3 text-base font-bold text-[#0F172A]">{step.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-[#475569]">{step.body}</p>
             </article>
           ))}
+        </div>
+
+        <div className="mt-8">
+          <Link
+            href="#contact"
+            className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#2563EB] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1D4ED8]"
+          >
+            Start your project
+            <ArrowRight className="size-4" />
+          </Link>
         </div>
       </div>
     </section>

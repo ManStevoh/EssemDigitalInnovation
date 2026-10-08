@@ -26,21 +26,21 @@ export default function CaseStudiesPage() {
           crumbs={[{ name: 'Work', path: '/case-studies' }]}
         />
 
-        <section className="bg-white py-12 sm:py-16">
+        <section className="bg-white py-14 sm:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="rounded-2xl border border-[#E8ECF2] bg-[#F4F6F8] px-8 py-14 text-center sm:px-12">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">
-                Coming soon
+            <div className="rounded-md border border-[#DDE3EA] border-l-4 border-l-[#10B981] bg-[#F4F6F8] px-6 py-10 sm:px-10 sm:py-12">
+              <p className="text-sm font-bold text-[#2563EB]">
+                Work in progress
               </p>
-              <h2 className="mx-auto mt-4 max-w-xl text-2xl font-semibold tracking-[-0.03em] text-[#0A0F1C] sm:text-3xl">
+              <h2 className="mt-4 max-w-xl text-2xl font-bold text-[#0F172A] sm:text-3xl">
                 Want to be among the first documented engagements?
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-[#64748B]">
+              <p className="mt-4 max-w-lg text-sm leading-6 text-[#475569]">
                 If you need digitization, automation, a website, an app, or RelayIQ, let’s talk.
               </p>
               <Button
                 asChild
-                className="mt-8 h-12 rounded-full bg-[#0A0F1C] px-7 text-sm text-white hover:bg-black"
+                className="mt-8 h-12 rounded-md bg-[#2563EB] px-7 text-sm font-semibold text-white hover:bg-[#1D4ED8]"
               >
                 <Link href="/#contact">
                   Start a project

@@ -79,13 +79,13 @@ export function NewsletterSignup({ compact = false, source = 'website-footer' }:
             }}
             placeholder="you@company.com"
             disabled={status === 'loading'}
-            className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
+            className="min-h-11 flex-1 rounded-md border border-[#CBD5E1] bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
             required
           />
           <Button
             type="submit"
             disabled={status === 'loading' || !marketingConsent}
-            className={`shrink-0 bg-primary text-primary-foreground ${brandHoverClasses.button}`}
+            className={`min-h-11 shrink-0 rounded-md bg-primary text-primary-foreground ${brandHoverClasses.button}`}
           >
             {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
             <Send size={16} aria-hidden />

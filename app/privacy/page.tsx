@@ -19,10 +19,10 @@ export default function PrivacyPage() {
     <>
       <Navigation />
       <main id="main-content" className="">
-        <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <article className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
           <SeoBreadcrumbs items={[{ name: 'Privacy Policy', path: '/privacy' }]} />
 
-          <h1 className="text-4xl font-semibold tracking-[-0.03em] text-[#0A0F1C] mb-2">Privacy Policy</h1>
+          <h1 className="mb-2 text-4xl font-bold leading-tight text-[#0F172A]">Privacy Policy</h1>
           <p className="text-muted-foreground text-sm mb-10 not-prose">
             Last updated: {lastUpdated}
           </p>

@@ -25,7 +25,7 @@ const initialFormData = {
 };
 
 const fieldClass =
-  'w-full rounded-md border border-[#E8ECF2] bg-white px-4 py-3 text-[15px] text-[#0A0F1C] placeholder:text-[#94A3B8] focus:border-[#0A0F1C] focus:outline-none focus:ring-2 focus:ring-[#0A0F1C]/10';
+  'w-full rounded-md border border-[#CBD5E1] bg-white px-4 py-3 text-[15px] text-[#0F172A] placeholder:text-[#64748B] focus:border-[#2563EB] focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20';
 
 export function Contact() {
   const [formData, setFormData] = useState(initialFormData);
@@ -97,13 +97,13 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="border-b border-[#E8ECF2] bg-white py-16 sm:py-20">
+    <section id="contact" className="border-b border-[#DDE3EA] bg-[#F4F6F8] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-2xl">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">
+          <p className="mb-3 text-sm font-bold text-[#2563EB]">
             Contact
           </p>
-          <h2 className="mb-4 text-3xl font-semibold tracking-[-0.03em] text-[#0A0F1C] sm:text-4xl">
+          <h2 className="mb-4 text-3xl font-bold text-[#0F172A] sm:text-4xl">
             Start the conversation
           </h2>
           <p className="text-lg leading-relaxed text-[#64748B]">
@@ -114,7 +114,7 @@ export function Contact() {
 
         <div className="mb-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div className="space-y-8">
-            <h3 className="text-xl font-semibold tracking-[-0.02em] text-[#0A0F1C]">Get in touch</h3>
+            <h3 className="text-xl font-bold text-[#0F172A]">Get in touch</h3>
 
             {[
               {
@@ -145,17 +145,17 @@ export function Contact() {
               const Icon = item.icon;
               return (
                 <div key={item.title} className="flex gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#0A0F1C] text-white">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#2563EB] text-white">
                     <Icon size={18} strokeWidth={1.75} />
                   </div>
                   <div>
-                    <h4 className="mb-0.5 font-semibold text-[#0A0F1C]">{item.title}</h4>
+                    <h4 className="mb-0.5 font-bold text-[#0F172A]">{item.title}</h4>
                     {item.href ? (
                       <a
                         href={item.href}
                         target={item.external ? '_blank' : undefined}
                         rel={item.external ? 'noopener noreferrer' : undefined}
-                        className="text-[#64748B] transition-colors hover:text-[#0A0F1C]"
+                        className="text-[#475569] transition-colors hover:text-[#2563EB]"
                       >
                         {item.content}
                       </a>
@@ -168,7 +168,7 @@ export function Contact() {
             })}
 
             <div className="border-t border-[#E8ECF2] pt-6">
-              <h4 className="mb-4 font-semibold text-[#0A0F1C]">Follow us</h4>
+              <h4 className="mb-4 font-bold text-[#0F172A]">Follow us</h4>
               <div className="flex gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
@@ -179,7 +179,7 @@ export function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#E8ECF2] text-[#475569] transition-colors hover:border-[#0A0F1C] hover:text-[#0A0F1C]"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-[#CBD5E1] bg-white text-[#475569] transition-colors hover:border-[#2563EB] hover:text-[#2563EB]"
                     >
                       <Icon size={18} />
                     </a>
@@ -189,11 +189,11 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-[#E8ECF2] bg-[#F4F6F8] p-8 sm:p-10">
+          <div className="rounded-md border border-[#DDE3EA] bg-white p-5 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
+                  <label htmlFor="name" className="mb-2 block text-sm font-semibold text-[#0F172A]">
                     Name
                   </label>
                   <input
@@ -211,7 +211,7 @@ export function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
+                  <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#0F172A]">
                     Email
                   </label>
                   <input
@@ -230,7 +230,7 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="projectType" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
+                <label htmlFor="projectType" className="mb-2 block text-sm font-semibold text-[#0F172A]">
                   Project type
                 </label>
                 <select
@@ -258,7 +258,7 @@ export function Contact() {
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="budgetRange" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
+                  <label htmlFor="budgetRange" className="mb-2 block text-sm font-semibold text-[#0F172A]">
                     Budget range
                   </label>
                   <select
@@ -285,7 +285,7 @@ export function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="timeline" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
+                  <label htmlFor="timeline" className="mb-2 block text-sm font-semibold text-[#0F172A]">
                     Timeline
                   </label>
                   <select
@@ -313,7 +313,7 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="mb-2 block text-sm font-medium text-[#0A0F1C]">
+                <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#0F172A]">
                   Message
                 </label>
                 <textarea
@@ -353,7 +353,7 @@ export function Contact() {
               <Button
                 type="submit"
                 disabled={status === 'loading'}
-                className="h-12 w-full rounded-full bg-[#0A0F1C] text-[15px] font-medium text-white hover:bg-black disabled:opacity-60 sm:w-auto sm:px-8"
+                className="h-12 w-full rounded-md bg-[#2563EB] text-[15px] font-semibold text-white hover:bg-[#1D4ED8] disabled:opacity-60 sm:w-auto sm:px-8"
               >
                 {status === 'loading' ? 'Sending…' : 'Send message'}
                 <Send className="size-4" />
@@ -362,11 +362,11 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-[#E8ECF2]">
+        <div className="overflow-hidden rounded-md border border-[#DDE3EA]">
           <iframe
             title="ESSEM office map"
             src={siteConfig.mapEmbedUrl}
-            className="h-64 w-full border-0 grayscale contrast-125 sm:h-80"
+            className="h-64 w-full border-0 sm:h-80"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />

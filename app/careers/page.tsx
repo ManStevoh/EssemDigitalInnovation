@@ -44,21 +44,21 @@ export default function CareersPage() {
               {openRoles.map((role) => (
                 <article
                   key={role.title}
-                  className="rounded-xl border border-[#E8ECF2] bg-[#F4F6F8] p-6 sm:p-8"
+                  className="rounded-md border border-[#DDE3EA] border-l-4 border-l-[#10B981] bg-white p-5 sm:p-7"
                 >
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                      <h2 className="text-xl font-semibold tracking-[-0.02em] text-[#0A0F1C]">
+                      <h2 className="text-xl font-bold text-[#0F172A]">
                         {role.title}
                       </h2>
                       <p className="mt-2 text-sm text-[#64748B]">{role.type}</p>
-                      <p className="mt-4 max-w-2xl text-sm leading-6 text-[#526072]">
+                      <p className="mt-4 max-w-2xl text-sm leading-6 text-[#475569]">
                         {role.description}
                       </p>
                     </div>
                     <Button
                       asChild
-                      className="h-11 shrink-0 rounded-full bg-[#0A0F1C] px-5 text-sm text-white hover:bg-black"
+                      className="h-11 shrink-0 rounded-md bg-[#2563EB] px-5 text-sm font-semibold text-white hover:bg-[#1D4ED8]"
                     >
                       <Link href={applyUrl} target="_blank" rel="noopener noreferrer">
                         Apply

@@ -23,11 +23,13 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-[#E8ECF2] bg-[#0A0F1C] text-white">
+    <footer className="border-t-4 border-[#10B981] bg-[#0F172A] text-white">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <Logo variant="full" imageClassName="h-12 max-w-[240px] brightness-0 invert" />
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-6 xl:grid-cols-8">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
+            <span className="inline-flex bg-white p-2">
+              <Logo variant="full" imageClassName="h-12 max-w-[260px]" />
+            </span>
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/65">
               {siteConfig.brandTagline}. Digital systems, automations, and online presence for
               serious operators across East Africa.
@@ -51,8 +53,8 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="md:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Services</h4>
+          <div>
+            <h4 className="text-xs font-bold text-[#6EE7B7]">Services</h4>
             <ul className="mt-4 space-y-2.5">
               {solutions.map((item, index) => (
                 <li key={item.title}>
@@ -64,27 +66,45 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-bold text-[#6EE7B7]">Products</h4>
+            <ul className="mt-4 space-y-2.5">
               <li>
-                <a
-                  href="https://relayiq.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link href="/products/relayiq" className="text-sm text-white/70 hover:text-white">
+                  RelayIQ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/websites-and-apps"
                   className="text-sm text-white/70 hover:text-white"
                 >
-                  RelayIQ
-                </a>
+                  Custom websites & apps
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/automations"
+                  className="text-sm text-white/70 hover:text-white"
+                >
+                  Automations
+                </Link>
               </li>
             </ul>
           </div>
 
-          <div className="md:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Solutions</h4>
+          <div>
+            <h4 className="text-xs font-bold text-[#6EE7B7]">Company</h4>
             <ul className="mt-4 space-y-2.5">
               {[
-                { label: 'SME owners', href: '/#audiences' },
-                { label: 'Retail & services', href: '/#audiences' },
-                { label: 'Teams going digital', href: '/#audiences' },
-                { label: 'Founders', href: '/#audiences' },
+                { label: 'About', href: '/#about' },
+                { label: 'Our work', href: '/case-studies' },
+                { label: 'Blog', href: '/blog' },
+                { label: 'Careers', href: '/careers' },
+                { label: 'Contact', href: '/#contact' },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href} className="text-sm text-white/70 hover:text-white">
@@ -95,16 +115,12 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Company</h4>
+          <div>
+            <h4 className="text-xs font-bold text-[#6EE7B7]">Resources</h4>
             <ul className="mt-4 space-y-2.5">
               {[
-                { label: 'About', href: '/#about' },
-                { label: 'Our work', href: '/#products' },
-                { label: 'Work', href: '/case-studies' },
                 { label: 'Blog', href: '/blog' },
-                { label: 'Careers', href: '/careers' },
-                { label: 'Contact', href: '/#contact' },
+                { label: 'FAQs', href: '/#faq' },
                 { label: 'Privacy', href: '/privacy' },
                 { label: 'Terms', href: '/terms' },
               ].map((item) => (
@@ -120,8 +136,8 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-2">
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">Get in touch</h4>
+          <div className="col-span-2 sm:col-span-1 lg:col-span-2">
+            <h4 className="text-xs font-bold text-[#6EE7B7]">Get in touch</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-white/70">
               <li>Mon–Sat, 8am–6pm EAT</li>
               <li>
@@ -149,7 +165,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="mt-12 border-y border-white/15 py-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-medium text-white">Stay connected</p>

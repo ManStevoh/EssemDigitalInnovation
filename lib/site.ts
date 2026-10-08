@@ -171,6 +171,66 @@ export const navLinks = [
   { href: '/#contact', label: 'Contact' },
 ] as const;
 
+/**
+ * Chacha-style dropdown nav — mapped to existing ESSEM routes only.
+ * Services dropdown mirrors chacha.ke /services/* detail pages.
+ * Products dropdown mirrors chacha.ke Solutions dropdown position,
+ * pointing at the RelayIQ product + productized builds.
+ */
+export const servicesMenu = [
+  {
+    href: '/services/automations',
+    label: 'Automations',
+    desc: 'WhatsApp + M-Pesa workflows that remove manual work',
+  },
+  {
+    href: '/services/digitization',
+    label: 'Digitization',
+    desc: 'Stock, sales & records off paper onto staff-ready tools',
+  },
+  {
+    href: '/services/online-presence',
+    label: 'Online presence',
+    desc: 'Google, social & WhatsApp funnel that brings enquiries',
+  },
+  {
+    href: '/services/websites-and-apps',
+    label: 'Websites and apps',
+    desc: 'Fast sites, bookings, portals & cross-platform apps',
+  },
+] as const;
+
+export const productsMenu = [
+  {
+    href: '/products/relayiq',
+    label: 'RelayIQ',
+    desc: 'WhatsApp storefront, bookings & dine-in QR with M-Pesa',
+  },
+  {
+    href: '/services/websites-and-apps',
+    label: 'Custom websites & apps',
+    desc: 'When you need more than a product — a dedicated build',
+  },
+  {
+    href: '/services/automations',
+    label: 'Automations around RelayIQ',
+    desc: 'Custom workflows, M-Pesa linkage & staff setup',
+  },
+] as const;
+
+/** Chacha-style Work link (/work) maps to existing case-studies route. */
+export const workHref = '/case-studies' as const;
+/** Chacha-style Quote link (/quote) maps to existing contact anchor. */
+export const quoteHref = '/#contact' as const;
+
+/** Industry cards (Chacha Solutions grid) map to closest existing service pages. */
+export const industryServiceRoutes = [
+  '/services/digitization',
+  '/services/automations',
+  '/services/online-presence',
+  '/services/websites-and-apps',
+] as const;
+
 export const trustChips = [
   'Built for Kenya SMEs',
   'Practical systems',

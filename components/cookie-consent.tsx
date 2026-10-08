@@ -65,11 +65,11 @@ export function CookieConsent() {
           role="dialog"
           aria-labelledby="cookie-consent-title"
           aria-describedby="cookie-consent-description"
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-border/60 bg-background/95 p-4 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] backdrop-blur-sm sm:p-6"
+          className="fixed inset-x-0 bottom-0 z-40 border-t-4 border-[#10B981] bg-background p-4 shadow-[0_-8px_24px_rgba(15,23,42,0.12)] sm:p-6"
         >
           <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
             <div className="flex items-start gap-3 sm:max-w-2xl">
-              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#EFF6FF] text-primary">
                 <Cookie size={20} aria-hidden />
               </div>
               <div>
@@ -134,7 +134,7 @@ export function CookieConsent() {
           </DialogHeader>
 
           <div className="space-y-5 py-2">
-            <div className="flex items-start justify-between gap-4 rounded-lg border border-border/60 p-4">
+            <div className="flex items-start justify-between gap-4 rounded-md border border-border p-4">
               <div className="space-y-1">
                 <p className="text-sm font-medium text-foreground">Essential</p>
                 <p className="text-sm text-muted-foreground">
@@ -144,7 +144,7 @@ export function CookieConsent() {
               <Switch checked disabled aria-readonly />
             </div>
 
-            <div className="flex items-start justify-between gap-4 rounded-lg border border-border/60 p-4">
+            <div className="flex items-start justify-between gap-4 rounded-md border border-border p-4">
               <div className="space-y-1">
                 <Label htmlFor="analytics-cookies" className="text-sm font-medium text-foreground">
                   Analytics

@@ -26,34 +26,31 @@ export function PainPoints() {
   return (
     <section className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#2563EB]">
+        <p className="text-sm font-bold text-[#2563EB]">
           Sound familiar?
         </p>
         <div className="mt-4 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <h2 className="max-w-xl text-3xl font-semibold tracking-[-0.03em] text-[#0B1220] sm:text-4xl">
+          <h2 className="max-w-xl text-3xl font-bold text-[#0F172A] sm:text-4xl">
             Your business deserves better than manual chaos
           </h2>
           <Link
             href="#solutions"
-            className="inline-flex items-center gap-1 text-sm font-medium text-[#0B1220] underline-offset-4 hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-[#2563EB] underline-offset-4 hover:underline"
           >
-            See how we fix it <ArrowUpRight className="size-4" />
+            See how we do it <ArrowUpRight className="size-4" />
           </Link>
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {pains.map((pain, i) => (
+          {pains.map((pain) => (
             <article
               key={pain.title}
-              className="rounded-md border border-[#E7EAF0] bg-[#F7F8FA] p-7 transition-colors hover:border-[#CBD5E1] hover:bg-white"
+              className="rounded-md border border-[#DDE3EA] border-l-2 border-l-[#2563EB] bg-[#F4F6F8] p-6 transition-colors hover:bg-white"
             >
-              <p className="text-[11px] font-semibold tracking-[0.22em] text-[#94A3B8]">
-                {String(i + 1).padStart(2, '0')}
-              </p>
-              <h3 className="mt-3 text-lg font-semibold tracking-[-0.02em] text-[#0B1220]">
+              <h3 className="text-lg font-bold text-[#0F172A]">
                 {pain.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-[#64748B]">{pain.body}</p>
+              <p className="mt-3 text-sm leading-6 text-[#475569]">{pain.body}</p>
             </article>
           ))}
         </div>
