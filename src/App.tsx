@@ -545,7 +545,7 @@ export default function App() {
           </div>
           <figure className="hero-photo reveal reveal--right" data-reveal>
             <div className="hero-photo__panel" />
-            <img alt="A shopkeeper working at a laptop on the counter" src={heroOffice} />
+            <img alt="A business owner seated at a desk with a laptop" src={heroOffice} />
             <figcaption>
               <small>Mombasa and Nairobi</small>
               <strong>Dependable digital systems for businesses that are done with manual work.</strong>
