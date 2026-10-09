@@ -1,7 +1,15 @@
 {
-  "description": "Creates professional, brand-consistent landing pages showcasing company identity, logos, and core messaging to enhance brand presence and connectivity.",
+  "title": "Essem Digital Innovations | Mombasa and Nairobi",
+  "description": "Essem Digital Innovations helps businesses in Mombasa and Nairobi digitize operations, automate work, and build a credible online presence.",
+  "language": "en",
   "robots": {
-    "index": false
+    "index": true
+  },
+  "icons": {
+    "icon": "/favicon.png"
+  },
+  "openGraph": {
+    "image": "https://www.essemdigital.com/brand-logo.png"
   },
   "accessibility": {
     "addBypassLinks": false,
