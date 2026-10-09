@@ -64,6 +64,11 @@ function serviceHtmlPlugin(): Plugin {
       description: "Essem replaces paper, scattered files, and manual follow-ups with practical digital operations for businesses in Mombasa and Nairobi.",
     },
     {
+      path: "online-presence",
+      title: "Online presence | Essem Digital Innovations",
+      description: "Essem builds a clear, credible digital face for businesses in Mombasa and Nairobi, so interest becomes an enquiry.",
+    },
+    {
       path: "websites",
       title: "Websites and apps | Essem Digital Innovations",
       description: "Essem builds marketing sites, web applications, and mobile apps when a business needs a proper front end. Based in Mombasa and Nairobi.",

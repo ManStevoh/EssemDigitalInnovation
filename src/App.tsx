@@ -51,7 +51,7 @@ const services = [
     image: shopCounter,
     alt: "A shopkeeper checking orders on a phone behind the counter",
     copy: "AI and workflows that connect your tools, people, and customers, so repetitive work stops living in chats and spreadsheets.",
-    points: ["Applied AI", "Process mapping", "Tool integrations"],
+    points: ["AI for replies, checks, and summaries done by hand", "A map of the process before a tool is chosen", "Connections between the tools you already use"],
   },
   {
     number: "02",
@@ -60,15 +60,16 @@ const services = [
     image: paperRecords,
     alt: "Hands sorting a stack of paper records beside a laptop",
     copy: "Practical systems that replace paper, scattered files, and manual follow-ups with clearer digital operations.",
-    points: ["Operations systems", "Records and workflows", "Staff-ready tools"],
+    points: ["One system for work that now lives in books and chats", "Records and next steps that do not depend on memory", "Screens staff can use without a long training programme"],
   },
   {
     number: "03",
     title: "Online presence",
+    path: "/online-presence",
     image: cafeService,
     alt: "A cafe server speaking with a customer who is using a phone",
     copy: "The digital face of your business: clear, credible, and built to turn interest into enquiries.",
-    points: ["Brand positioning", "Content foundations", "Lead pathways"],
+    points: ["A clear position on who you serve and why they should trust you", "Answers for the questions customers already ask", "A path from interest to WhatsApp, a call, or the form"],
   },
   {
     number: "04",
@@ -77,7 +78,7 @@ const services = [
     image: websiteDesk,
     alt: "A designer working at a laptop in a simple office",
     copy: "Custom websites and mobile apps when your operation needs a strong front end or a dedicated product layer.",
-    points: ["Marketing sites", "Web applications", "Mobile apps"],
+    points: ["A public site that explains the business and collects enquiries", "Browser tools for staff or customers", "A phone app when the work leaves the desk"],
   },
 ];
 
@@ -99,6 +100,10 @@ const values = ["Innovation", "Impact", "Integrity", "Collaboration", "Sustainab
 
 const whatsappUrl = "https://wa.me/254728210962?text=Hello%20ESSEM%2C%20I%20would%20like%20to%20discuss%20a%20project.";
 
+function serviceWhatsapp(name: string) {
+  return `https://wa.me/254728210962?text=${encodeURIComponent(`Hello ESSEM, I would like to request ${name}.`)}`;
+}
+
 const servicePages = [
   {
     path: "/ai-and-automations",
@@ -109,10 +114,23 @@ const servicePages = [
     lead: "AI and workflows that connect your tools, people, and customers, so repetitive work stops living in chats and spreadsheets.",
     image: shopCounter,
     alt: "A shopkeeper checking orders on a phone behind the counter",
+    fit: "Fits when the same checks, replies, or updates are still done by hand in chats and spreadsheets.",
     points: [
-      { title: "Applied AI", copy: "Use AI for the repetitive checks, replies, and summaries your team already does by hand." },
-      { title: "Process mapping", copy: "We trace how the work actually moves before choosing a tool." },
-      { title: "Tool integrations", copy: "Connect the systems you already use so people stop copying the same details between them." },
+      {
+        title: "Applied AI",
+        copy: "Use AI for the repetitive checks, replies, and summaries your team already does by hand.",
+        items: ["Draft replies from answers you already give", "Summaries of long chats, forms, and reports", "Checks that flag missing details before a person reviews them"],
+      },
+      {
+        title: "Process mapping",
+        copy: "We trace how the work actually moves before choosing a tool.",
+        items: ["A map of how an order, booking, or enquiry moves today", "The steps that are repeated, delayed, or known by only one person", "A short list of what to automate first"],
+      },
+      {
+        title: "Tool integrations",
+        copy: "Connect the systems you already use so people stop copying the same details between them.",
+        items: ["WhatsApp, spreadsheets, and the tools you already pay for, connected", "The same customer or order detail written once", "A handover your team can run without us in the room"],
+      },
     ],
   },
   {
@@ -124,10 +142,51 @@ const servicePages = [
     lead: "Practical systems that replace paper, scattered files, and manual follow-ups with clearer digital operations.",
     image: paperRecords,
     alt: "Hands sorting a stack of paper records beside a laptop",
+    fit: "Fits when the operation still depends on paper, scattered files, or one person who remembers the next step.",
     points: [
-      { title: "Operations systems", copy: "A single place for the work your team currently tracks in books, chats, and memory." },
-      { title: "Records and workflows", copy: "Records that stay findable, and steps that do not depend on one person remembering them." },
-      { title: "Staff-ready tools", copy: "Systems people can use on the first day, without a long training programme." },
+      {
+        title: "Operations systems",
+        copy: "A single place for the work your team currently tracks in books, chats, and memory.",
+        items: ["Jobs, stock, bookings, or cases in one list", "A status everyone can see, not a private notebook", "Daily work that no longer restarts from WhatsApp history"],
+      },
+      {
+        title: "Records and workflows",
+        copy: "Records that stay findable, and steps that do not depend on one person remembering them.",
+        items: ["Records you can search by customer, date, or job", "A next step assigned to a person", "A trail of what changed, and who changed it"],
+      },
+      {
+        title: "Staff-ready tools",
+        copy: "Systems people can use on the first day, without a long training programme.",
+        items: ["Screens that work on the phone at the counter", "Simple roles for owner, supervisor, and staff", "A short guide for the first week, not a manual nobody opens"],
+      },
+    ],
+  },
+  {
+    path: "/online-presence",
+    title: "Online presence | Essem Digital Innovations",
+    description: "Essem builds a clear, credible digital face for businesses in Mombasa and Nairobi, so interest becomes an enquiry.",
+    eyebrow: "Online presence",
+    h1: "Online presence that turns interest into an enquiry.",
+    lead: "The digital face of your business: clear, credible, and built to turn interest into enquiries.",
+    image: cafeService,
+    alt: "A cafe server speaking with a customer who is using a phone",
+    fit: "Fits when people hear about you, then cannot find a clear and credible place to enquire.",
+    points: [
+      {
+        title: "Brand positioning",
+        copy: "Who you serve, what you do, and why a buyer should trust you, in language customers already use.",
+        items: ["A plain statement of the offer and who it is for", "Proof points drawn from how you actually operate", "One voice across the site, WhatsApp, and social pages"],
+      },
+      {
+        title: "Content foundations",
+        copy: "The pages and answers that cover the questions people already ask before they buy.",
+        items: ["The services, locations, and prices you are ready to state", "Answers for the objections that stall an enquiry", "A small set of posts or pages you can keep current"],
+      },
+      {
+        title: "Lead pathways",
+        copy: "A clear next step on every public surface, so interest does not die in a browse.",
+        items: ["WhatsApp, call, or form placed where the decision happens", "The same enquiry landing with someone who can reply", "A first response your team can send the same day"],
+      },
     ],
   },
   {
@@ -139,10 +198,23 @@ const servicePages = [
     lead: "Custom websites and mobile apps when your operation needs a strong front end or a dedicated product layer.",
     image: websiteDesk,
     alt: "A designer working at a laptop in a simple office",
+    fit: "Fits when the public site, or the tool staff and customers use, is missing or no longer matches the operation.",
     points: [
-      { title: "Marketing sites", copy: "A clear public site that explains the business and turns interest into an enquiry." },
-      { title: "Web applications", copy: "Tools your staff or customers use in the browser, tied to the operation behind them." },
-      { title: "Mobile apps", copy: "A phone layer when the work happens away from a desk." },
+      {
+        title: "Marketing sites",
+        copy: "A clear public site that explains the business and turns interest into an enquiry.",
+        items: ["Pages for the offer, the proof, and the next step", "Fast on a phone, which is how most visitors arrive", "Enquiry routes into WhatsApp or the contact form"],
+      },
+      {
+        title: "Web applications",
+        copy: "Tools your staff or customers use in the browser, tied to the operation behind them.",
+        items: ["The jobs your team repeats, turned into screens", "Logins and roles for the people who should see each record", "Connected to the records, payments, or messages you already use"],
+      },
+      {
+        title: "Mobile apps",
+        copy: "A phone layer when the work happens away from a desk.",
+        items: ["Field, counter, or customer tasks that need a phone", "The same data as the system behind the desk", "A build scoped to the job, not a feature list copied from a larger company"],
+      },
     ],
   },
 ];
@@ -180,22 +252,47 @@ function ServicePage({ page }: { page: (typeof servicePages)[number] }) {
           <h1>{page.h1}</h1>
           <p>{page.lead}</p>
           <div className="hero__actions">
-            <a className="button" href="/#contact">
-              Book a consultation
-              <Icon name="arrow" />
+            <a className="button" href={serviceWhatsapp(page.eyebrow)} rel="noreferrer" target="_blank">
+              <WhatsAppMark className="wa-inline" />
+              Request this service
             </a>
-            <a className="text-link" href="/">Back to the homepage</a>
+            <a className="text-link" href="/#contact">Or send a brief</a>
           </div>
         </div>
         <img alt={page.alt} src={page.image} />
       </div>
-      <div className="container service-points">
-        {page.points.map((point) => (
-          <article key={point.title}>
-            <h2>{point.title}</h2>
-            <p>{point.copy}</p>
-          </article>
-        ))}
+      <div className="container service-detail">
+        <div className="section-heading">
+          <div>
+            <div className="eyebrow eyebrow--blue"><span />What this includes</div>
+            <h2>The work inside {page.eyebrow}.</h2>
+          </div>
+          <p>{page.fit}</p>
+        </div>
+        <div className="service-offers">
+          {page.points.map((point) => (
+            <article key={point.title}>
+              <h2>{point.title}</h2>
+              <p>{point.copy}</p>
+              <ul>
+                {point.items.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div className="service-cta">
+          <div>
+            <h2>Request {page.eyebrow}.</h2>
+            <p>Tell us what is still manual. We reply on WhatsApp within one business day, from the Nairobi line.</p>
+          </div>
+          <div className="hero__actions">
+            <a className="button" href={serviceWhatsapp(page.eyebrow)} rel="noreferrer" target="_blank">
+              <WhatsAppMark className="wa-inline" />
+              Request this service
+            </a>
+            <a className="text-link text-link--light" href="/#contact">Prefer the form</a>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -224,9 +321,9 @@ const faqs = [
   },
 ];
 
-function WhatsAppMark() {
+function WhatsAppMark({ className }: { className?: string }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
+    <svg aria-hidden="true" className={className} viewBox="0 0 24 24">
       <path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.74.46 3.44 1.34 4.94L2 22l5.39-1.41a10 10 0 0 0 4.65 1.14h.01c5.46 0 9.89-4.4 9.89-9.83C21.94 6.4 17.5 2 12.04 2Zm5.76 13.92c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.81-.11-.41-.14-.95-.31-1.63-.6-2.87-1.24-4.74-4.13-4.88-4.32-.14-.19-1.15-1.53-1.15-2.92s.73-2.07 1-2.35c.24-.28.64-.41 1.02-.41h.37c.12 0 .28-.04.44.34.16.4.56 1.37.61 1.47.05.1.08.22.02.35-.06.14-.1.22-.19.34-.1.12-.2.26-.29.35-.1.1-.2.2-.08.39.11.19.5.82 1.07 1.33.73.65 1.35.86 1.54.96.19.1.3.08.41-.05.11-.12.47-.55.6-.74.12-.19.25-.16.42-.1.17.07 1.08.51 1.27.6.19.1.31.14.36.22.05.08.05.72-.19 1.4Z" />
     </svg>
   );
@@ -329,7 +426,7 @@ export default function App() {
   const solutionLinks = [
     { title: "AI and automations", href: "/ai-and-automations" },
     { title: "Digitization", href: "/digitization" },
-    { title: "Online presence", href: "/#online-presence" },
+    { title: "Online presence", href: "/online-presence" },
     { title: "Websites and apps", href: "/websites" },
   ];
 
@@ -483,7 +580,13 @@ export default function App() {
                   <ul>
                     {service.points.map((point) => <li key={point}>{point}</li>)}
                   </ul>
-                  {"path" in service && service.path ? <a className="text-link" href={service.path}>Read this service</a> : null}
+                  <div className="service-card__actions">
+                    <a className="button" href={serviceWhatsapp(service.title)} rel="noreferrer" target="_blank">
+                      <WhatsAppMark className="wa-inline" />
+                      Request this service
+                    </a>
+                    {"path" in service && service.path ? <a className="text-link" href={service.path}>See what is included</a> : null}
+                  </div>
                 </div>
               </article>
             ))}
@@ -681,6 +784,7 @@ export default function App() {
               <strong>Explore</strong>
               <a href="/ai-and-automations">AI and automations</a>
               <a href="/digitization">Digitization</a>
+              <a href="/online-presence">Online presence</a>
               <a href="/websites">Websites and apps</a>
               <a href={sectionHref("products")}>RelayIQ</a>
             </div>
