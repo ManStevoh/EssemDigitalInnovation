@@ -292,6 +292,7 @@ function WhatsAppChat({ href }: { href: string }) {
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [formError, setFormError] = useState("");
@@ -321,7 +322,16 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setSolutionsOpen(false);
+  };
+  const solutionLinks = [
+    { title: "AI and automations", href: "/ai-and-automations" },
+    { title: "Digitization", href: "/digitization" },
+    { title: "Online presence", href: "/#online-presence" },
+    { title: "Websites and apps", href: "/websites" },
+  ];
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -380,7 +390,21 @@ export default function App() {
             <img alt="Essem Digital Innovations" className="logo" src={essemLogo} />
           </a>
           <nav aria-label="Primary navigation" className={menuOpen ? "nav nav--open" : "nav"}>
-            <a href={sectionHref("services")} onClick={closeMenu}>Solutions</a>
+            <div className={solutionsOpen ? "nav-drop is-open" : "nav-drop"}>
+              <button
+                aria-expanded={solutionsOpen}
+                aria-haspopup="true"
+                onClick={() => setSolutionsOpen((open) => !open)}
+                type="button"
+              >
+                Solutions
+              </button>
+              <div className="nav-drop__menu">
+                {solutionLinks.map((item) => (
+                  <a href={item.href} key={item.href} onClick={closeMenu}>{item.title}</a>
+                ))}
+              </div>
+            </div>
             <a href={sectionHref("products")} onClick={closeMenu}>Products</a>
             <a href={sectionHref("about")} onClick={closeMenu}>About</a>
             <a href={sectionHref("approach")} onClick={closeMenu}>Approach</a>
@@ -450,7 +474,7 @@ export default function App() {
           </div>
           <div className="service-grid reveal-group" data-reveal>
             {services.map((service) => (
-              <article className="service-card" key={service.title}>
+              <article className="service-card" id={service.title === "Online presence" ? "online-presence" : undefined} key={service.title}>
                 <img alt={service.alt} src={service.image} />
                 <div className="service-card__body">
                   <span>{service.number}</span>
