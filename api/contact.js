@@ -33,7 +33,26 @@ export function validateContact(contact) {
   return null;
 }
 
-async function sendWithResend(contact) {
+function providerMessage(result, fallback) {
+  if (typeof result?.message === "string" && result.message) return result.message;
+  if (typeof result?.error === "string" && result.error) return result.error;
+  if (typeof result?.error?.message === "string" && result.error.message) return result.error.message;
+  return fallback;
+}
+
+function enquiryText(contact) {
+  return [
+    `Name: ${contact.name}`,
+    `Email: ${contact.email}`,
+    `Project: ${contact.projectType}`,
+    `Budget: ${contact.budgetRange}`,
+    `Timeline: ${contact.timeline}`,
+    "",
+    contact.message,
+  ].join("\n");
+}
+
+async function postResend(contact, from) {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -41,24 +60,27 @@ async function sendWithResend(contact) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: process.env.CONTACT_FROM || "ESSEM Digital <info@essemdigital.com>",
+      from,
       to: [process.env.CONTACT_TO || TO_EMAIL],
       reply_to: contact.email,
       subject: `New enquiry from ${contact.name}`,
-      text: [
-        `Name: ${contact.name}`,
-        `Email: ${contact.email}`,
-        `Project: ${contact.projectType}`,
-        `Budget: ${contact.budgetRange}`,
-        `Timeline: ${contact.timeline}`,
-        "",
-        contact.message,
-      ].join("\n"),
+      text: enquiryText(contact),
     }),
   });
+  const result = await response.json().catch(() => ({}));
   if (!response.ok) {
-    const result = await response.json().catch(() => ({}));
-    throw new Error(result.message || "Failed to send message. Please try again or email info@essemdigital.com.");
+    throw new Error(providerMessage(result, "Resend could not send this message."));
+  }
+}
+
+async function sendWithResend(contact) {
+  const preferred = process.env.CONTACT_FROM || "ESSEM Digital <info@essemdigital.com>";
+  try {
+    await postResend(contact, preferred);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "";
+    if (!/not verified/i.test(message)) throw error;
+    await postResend(contact, "ESSEM Digital <onboarding@resend.dev>");
   }
 }
 
@@ -86,35 +108,39 @@ async function sendWithFormSubmit(contact) {
   });
   const result = await response.json().catch(() => ({}));
   if (result.success === true || result.success === "true") return;
-  const message = String(result.message || "");
+  const message = providerMessage(result, "");
   if (/activation/i.test(message)) {
     throw new Error("Check info@essemdigital.com for a FormSubmit activation email, confirm it once, then send this form again.");
   }
-  throw new Error("Failed to send message. Please try again or email info@essemdigital.com.");
+  throw new Error(message || "The backup inbox could not accept this message.");
 }
 
 export async function handleContact(input) {
   const contact = normalizeContact(input);
   const rejected = validateContact(contact);
   if (rejected) return rejected;
-  try {
-    if (process.env.RESEND_API_KEY) {
-      try {
-        await sendWithResend(contact);
-        return { status: 200, body: { ok: true } };
-      } catch (error) {
-        const message = error instanceof Error ? error.message : "";
-        if (!/not verified/i.test(message)) throw error;
-      }
+  const failures = [];
+  if (process.env.RESEND_API_KEY) {
+    try {
+      await sendWithResend(contact);
+      return { status: 200, body: { ok: true } };
+    } catch (error) {
+      failures.push(error instanceof Error ? error.message : "Resend could not send this message.");
     }
+  }
+  try {
     await sendWithFormSubmit(contact);
     return { status: 200, body: { ok: true } };
   } catch (error) {
-    return {
-      status: 502,
-      body: { error: error instanceof Error ? error.message : "Failed to send message. Please try again or email info@essemdigital.com." },
-    };
+    failures.push(error instanceof Error ? error.message : "The backup inbox could not accept this message.");
   }
+  const activation = failures.find((item) => /activation/i.test(item));
+  return {
+    status: 502,
+    body: {
+      error: activation || failures.filter(Boolean).join(" ") || "Failed to send message. Please try again or email info@essemdigital.com.",
+    },
+  };
 }
 
 async function readBody(req) {
