@@ -106,13 +106,19 @@ async function sendWithFormSubmit(contact) {
       _captcha: "false",
     }),
   });
-  const result = await response.json().catch(() => ({}));
+  const raw = await response.text();
+  let result = {};
+  try {
+    result = raw ? JSON.parse(raw) : {};
+  } catch {
+    result = { message: raw.slice(0, 180) };
+  }
   if (result.success === true || result.success === "true") return;
   const message = providerMessage(result, "");
   if (/activation/i.test(message)) {
-    throw new Error("Check info@essemdigital.com for a FormSubmit activation email, confirm it once, then send this form again.");
+    throw new Error("Open info@essemdigital.com and confirm the FormSubmit activation email, then send the form again.");
   }
-  throw new Error(message || "The backup inbox could not accept this message.");
+  throw new Error(message || `Backup inbox failed (${response.status}).`);
 }
 
 export async function handleContact(input) {
@@ -134,13 +140,14 @@ export async function handleContact(input) {
   } catch (error) {
     failures.push(error instanceof Error ? error.message : "The backup inbox could not accept this message.");
   }
-  const activation = failures.find((item) => /activation/i.test(item));
-  return {
-    status: 502,
-    body: {
-      error: activation || failures.filter(Boolean).join(" ") || "Failed to send message. Please try again or email info@essemdigital.com.",
-    },
-  };
+  const joined = failures.filter(Boolean).join(" ");
+  let error = joined || "Failed to send message. Please try again or email info@essemdigital.com.";
+  if (/activation/i.test(joined)) {
+    error = "Open info@essemdigital.com and confirm the FormSubmit activation email, then send the form again.";
+  } else if (/not verified|only send testing emails|verify a domain/i.test(joined)) {
+    error = "Resend cannot email info@essemdigital.com until essemdigital.com is verified. Add the domain at https://resend.com/domains, then add the DNS records it shows in Hover.";
+  }
+  return { status: 502, body: { error } };
 }
 
 async function readBody(req) {
