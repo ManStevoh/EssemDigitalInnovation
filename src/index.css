@@ -93,7 +93,7 @@ h2 { margin: .8rem 0 0; font-size: clamp(2rem, 3.4vw, 3.1rem); font-weight: 700;
 .hero-photo { position: relative; margin: 1.5rem 0 1.5rem 1.25rem; }
 .hero-photo__panel { position: absolute; inset: 1.4rem -1.1rem -1.1rem 1.4rem; border-radius: 1.6rem; background: var(--blue); }
 .hero-photo__panel::after { content: ""; position: absolute; left: 0; right: 18%; top: 0; height: .7rem; background: var(--green); border-radius: 1.6rem 0 0 0; }
-.hero-photo img { position: relative; width: 100%; height: 34rem; object-fit: cover; object-position: center 18%; border-radius: 1.35rem; transition: transform .6s ease; }
+.hero-photo img { position: relative; width: 100%; height: 34rem; object-fit: cover; object-position: center 42%; border-radius: 1.35rem; transition: transform .6s ease; }
 .hero-photo:hover img { transform: scale(1.035); }
 .hero-photo figcaption { position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.25rem; padding: 1rem 1.1rem; border-radius: .8rem; background: rgb(16 32 62 / 82%); color: var(--white); }
 .hero-photo small { display: block; margin-bottom: .35rem; color: #8ef0ea; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
@@ -245,7 +245,7 @@ footer { padding: 4rem 0 5.5rem; background: var(--navy); color: var(--white); }
   .section-heading, .footer__top { flex-direction: column; align-items: start; }
   .hero__grid { gap: 2rem; align-items: start; }
   .hero-photo { margin: 0; }
-  .hero-photo img { height: 28rem; object-position: center 12%; }
+  .hero-photo img { height: 28rem; object-position: center 40%; }
   .product__mark { display: none; }
 }
 
@@ -276,7 +276,7 @@ footer { padding: 4rem 0 5.5rem; background: var(--navy); color: var(--white); }
   h1 { font-size: 2.6rem; }
   .hero-photo { margin: .25rem .35rem 0 0; }
   .hero-photo__panel { inset: .7rem -.35rem -.55rem .7rem; }
-  .hero-photo img { height: auto; aspect-ratio: 4 / 5; object-position: center 8%; }
+  .hero-photo img { height: auto; aspect-ratio: 4 / 5; object-position: center 40%; }
   .hero-photo figcaption { left: .85rem; right: .85rem; bottom: .85rem; }
   .footer__bottom { flex-direction: column; }
   .wa-widget { right: .85rem; bottom: .85rem; }
