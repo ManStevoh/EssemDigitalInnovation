@@ -47,6 +47,7 @@ const services = [
   {
     number: "01",
     title: "AI and automations",
+    path: "/ai-and-automations",
     image: shopCounter,
     alt: "A shopkeeper checking orders on a phone behind the counter",
     copy: "AI and workflows that connect your tools, people, and customers, so repetitive work stops living in chats and spreadsheets.",
@@ -55,6 +56,7 @@ const services = [
   {
     number: "02",
     title: "Digitization",
+    path: "/digitization",
     image: paperRecords,
     alt: "Hands sorting a stack of paper records beside a laptop",
     copy: "Practical systems that replace paper, scattered files, and manual follow-ups with clearer digital operations.",
@@ -71,6 +73,7 @@ const services = [
   {
     number: "04",
     title: "Websites and apps",
+    path: "/websites",
     image: websiteDesk,
     alt: "A designer working at a laptop in a simple office",
     copy: "Custom websites and mobile apps when your operation needs a strong front end or a dedicated product layer.",
@@ -95,6 +98,108 @@ const steps = [
 const values = ["Innovation", "Impact", "Integrity", "Collaboration", "Sustainability"];
 
 const whatsappUrl = "https://wa.me/254728210962?text=Hello%20ESSEM%2C%20I%20would%20like%20to%20discuss%20a%20project.";
+
+const servicePages = [
+  {
+    path: "/ai-and-automations",
+    title: "AI and automations | Essem Digital Innovations",
+    description: "Essem designs AI and workflows that connect tools, people, and customers, so repetitive work leaves chats and spreadsheets. Offices in Mombasa and Nairobi.",
+    eyebrow: "AI and automations",
+    h1: "AI and automations for work that still lives in chats.",
+    lead: "AI and workflows that connect your tools, people, and customers, so repetitive work stops living in chats and spreadsheets.",
+    image: shopCounter,
+    alt: "A shopkeeper checking orders on a phone behind the counter",
+    points: [
+      { title: "Applied AI", copy: "Use AI for the repetitive checks, replies, and summaries your team already does by hand." },
+      { title: "Process mapping", copy: "We trace how the work actually moves before choosing a tool." },
+      { title: "Tool integrations", copy: "Connect the systems you already use so people stop copying the same details between them." },
+    ],
+  },
+  {
+    path: "/digitization",
+    title: "Digitization | Essem Digital Innovations",
+    description: "Essem replaces paper, scattered files, and manual follow-ups with practical digital operations for businesses in Mombasa and Nairobi.",
+    eyebrow: "Digitization",
+    h1: "Digitization that replaces paper and scattered follow-ups.",
+    lead: "Practical systems that replace paper, scattered files, and manual follow-ups with clearer digital operations.",
+    image: paperRecords,
+    alt: "Hands sorting a stack of paper records beside a laptop",
+    points: [
+      { title: "Operations systems", copy: "A single place for the work your team currently tracks in books, chats, and memory." },
+      { title: "Records and workflows", copy: "Records that stay findable, and steps that do not depend on one person remembering them." },
+      { title: "Staff-ready tools", copy: "Systems people can use on the first day, without a long training programme." },
+    ],
+  },
+  {
+    path: "/websites",
+    title: "Websites and apps | Essem Digital Innovations",
+    description: "Essem builds marketing sites, web applications, and mobile apps when a business needs a proper front end. Based in Mombasa and Nairobi.",
+    eyebrow: "Websites and apps",
+    h1: "Websites and apps built around how you operate.",
+    lead: "Custom websites and mobile apps when your operation needs a strong front end or a dedicated product layer.",
+    image: websiteDesk,
+    alt: "A designer working at a laptop in a simple office",
+    points: [
+      { title: "Marketing sites", copy: "A clear public site that explains the business and turns interest into an enquiry." },
+      { title: "Web applications", copy: "Tools your staff or customers use in the browser, tied to the operation behind them." },
+      { title: "Mobile apps", copy: "A phone layer when the work happens away from a desk." },
+    ],
+  },
+];
+
+function sectionHref(id: string) {
+  const path = window.location.pathname.replace(/\/$/, "") || "/";
+  return path === "/" ? `#${id}` : `/#${id}`;
+}
+
+function PageMeta({ title, description, path }: { title: string; description: string; path: string }) {
+  useEffect(() => {
+    document.title = title;
+    const set = (selector: string, value: string) => {
+      const element = document.querySelector(selector);
+      if (!element) return;
+      if (element.tagName === "LINK") element.setAttribute("href", value);
+      else element.setAttribute("content", value);
+    };
+    const url = `https://www.essemdigital.com${path}`;
+    set('meta[name="description"]', description);
+    set('link[rel="canonical"]', url);
+    set('meta[property="og:title"]', title);
+    set('meta[property="og:description"]', description);
+    set('meta[property="og:url"]', url);
+  }, [title, description, path]);
+  return null;
+}
+
+function ServicePage({ page }: { page: (typeof servicePages)[number] }) {
+  return (
+    <section className="section service-page">
+      <div className="container service-page__grid">
+        <div>
+          <div className="eyebrow eyebrow--green"><span />{page.eyebrow}</div>
+          <h1>{page.h1}</h1>
+          <p>{page.lead}</p>
+          <div className="hero__actions">
+            <a className="button" href="/#contact">
+              Book a consultation
+              <Icon name="arrow" />
+            </a>
+            <a className="text-link" href="/">Back to the homepage</a>
+          </div>
+        </div>
+        <img alt={page.alt} src={page.image} />
+      </div>
+      <div className="container service-points">
+        {page.points.map((point) => (
+          <article key={point.title}>
+            <h2>{point.title}</h2>
+            <p>{point.copy}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 const faqs = [
   {
@@ -265,19 +370,21 @@ export default function App() {
     }
   };
 
+  const activePage = servicePages.find((item) => item.path === window.location.pathname.replace(/\/$/, ""));
+
   return (
     <main>
       <header className={scrolled ? "site-header is-scrolled" : "site-header"}>
         <div className="container header__inner">
-          <a aria-label="Essem Digital Innovations home" href="#home">
+          <a aria-label="Essem Digital Innovations home" href="/">
             <img alt="Essem Digital Innovations" className="logo" src={essemLogo} />
           </a>
           <nav aria-label="Primary navigation" className={menuOpen ? "nav nav--open" : "nav"}>
-            <a href="#services" onClick={closeMenu}>Solutions</a>
-            <a href="#products" onClick={closeMenu}>Products</a>
-            <a href="#about" onClick={closeMenu}>About</a>
-            <a href="#approach" onClick={closeMenu}>Approach</a>
-            <a href="#contact" onClick={closeMenu}>Contact</a>
+            <a href={sectionHref("services")} onClick={closeMenu}>Solutions</a>
+            <a href={sectionHref("products")} onClick={closeMenu}>Products</a>
+            <a href={sectionHref("about")} onClick={closeMenu}>About</a>
+            <a href={sectionHref("approach")} onClick={closeMenu}>Approach</a>
+            <a href={sectionHref("contact")} onClick={closeMenu}>Contact</a>
           </nav>
           <a className="button button--small" href={whatsappUrl} rel="noreferrer" target="_blank">Talk to us</a>
           <button
@@ -292,6 +399,12 @@ export default function App() {
           </button>
         </div>
       </header>
+      <PageMeta
+        description={activePage?.description ?? "Essem Digital Innovations helps businesses in Mombasa and Nairobi digitize operations, automate work, and build a credible online presence."}
+        path={activePage?.path ?? "/"}
+        title={activePage?.title ?? "Essem Digital Innovations | Mombasa and Nairobi"}
+      />
+      {activePage ? <ServicePage page={activePage} /> : <>
 
       <section className="hero" id="home">
         <div className="container hero__grid">
@@ -341,11 +454,12 @@ export default function App() {
                 <img alt={service.alt} src={service.image} />
                 <div className="service-card__body">
                   <span>{service.number}</span>
-                  <h3>{service.title}</h3>
+                  <h3>{"path" in service && service.path ? <a href={service.path}>{service.title}</a> : service.title}</h3>
                   <p>{service.copy}</p>
                   <ul>
                     {service.points.map((point) => <li key={point}>{point}</li>)}
                   </ul>
+                  {"path" in service && service.path ? <a className="text-link" href={service.path}>Read this service</a> : null}
                 </div>
               </article>
             ))}
@@ -530,6 +644,7 @@ export default function App() {
           </form>
         </div>
       </section>
+      </>}
 
       <footer>
         <div className="container footer__top">
@@ -540,10 +655,10 @@ export default function App() {
           <div className="footer__links">
             <div>
               <strong>Explore</strong>
-              <a href="#services">Solutions</a>
-              <a href="#products">RelayIQ</a>
-              <a href="#about">About</a>
-              <a href="#approach">Approach</a>
+              <a href="/ai-and-automations">AI and automations</a>
+              <a href="/digitization">Digitization</a>
+              <a href="/websites">Websites and apps</a>
+              <a href={sectionHref("products")}>RelayIQ</a>
             </div>
             <div>
               <strong>Connect</strong>

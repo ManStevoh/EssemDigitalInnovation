@@ -9,7 +9,7 @@
     "icon": "/favicon.png"
   },
   "openGraph": {
-    "image": "https://www.essemdigital.com/brand-logo.png"
+    "image": "https://www.essemdigital.com/og-image.png"
   },
   "accessibility": {
     "addBypassLinks": false,

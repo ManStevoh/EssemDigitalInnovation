@@ -1,6 +1,7 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import fs from 'node:fs'
 import path from 'node:path'
 
 import siteConfiguration from './.figma/make/site.json'
@@ -26,6 +27,7 @@ react(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
       contactApiDevPlugin(),
+      serviceHtmlPlugin(),
     ],
     resolve: {
       alias: {
@@ -48,6 +50,48 @@ react(),
     },
   }
 })
+
+function serviceHtmlPlugin(): Plugin {
+  const pages = [
+    {
+      path: "ai-and-automations",
+      title: "AI and automations | Essem Digital Innovations",
+      description: "Essem designs AI and workflows that connect tools, people, and customers, so repetitive work leaves chats and spreadsheets. Offices in Mombasa and Nairobi.",
+    },
+    {
+      path: "digitization",
+      title: "Digitization | Essem Digital Innovations",
+      description: "Essem replaces paper, scattered files, and manual follow-ups with practical digital operations for businesses in Mombasa and Nairobi.",
+    },
+    {
+      path: "websites",
+      title: "Websites and apps | Essem Digital Innovations",
+      description: "Essem builds marketing sites, web applications, and mobile apps when a business needs a proper front end. Based in Mombasa and Nairobi.",
+    },
+  ]
+
+  return {
+    name: "service-html",
+    apply: "build",
+    closeBundle() {
+      const indexPath = path.resolve(__dirname, "dist/index.html")
+      if (!fs.existsSync(indexPath)) return
+      const html = fs.readFileSync(indexPath, "utf8")
+      for (const page of pages) {
+        const url = `https://www.essemdigital.com/${page.path}`
+        const next = html
+          .replace(/<title>[^<]*<\/title>/, `<title>${page.title}</title>`)
+          .replace(/rel="canonical" href="[^"]*"/, `rel="canonical" href="${url}"`)
+          .replace(/name="description" content="[^"]*"/, `name="description" content="${page.description}"`)
+          .replace(/property="og:title" content="[^"]*"/, `property="og:title" content="${page.title}"`)
+          .replace(/property="og:description" content="[^"]*"/, `property="og:description" content="${page.description}"`)
+        const directory = path.resolve(__dirname, "dist", page.path)
+        fs.mkdirSync(directory, { recursive: true })
+        fs.writeFileSync(path.join(directory, "index.html"), next)
+      }
+    },
+  }
+}
 
 function contactApiDevPlugin(): Plugin {
   const attach: Plugin['configureServer'] = (server) => {
