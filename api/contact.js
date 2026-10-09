@@ -98,8 +98,16 @@ export async function handleContact(input) {
   const rejected = validateContact(contact);
   if (rejected) return rejected;
   try {
-    if (process.env.RESEND_API_KEY) await sendWithResend(contact);
-    else await sendWithFormSubmit(contact);
+    if (process.env.RESEND_API_KEY) {
+      try {
+        await sendWithResend(contact);
+        return { status: 200, body: { ok: true } };
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "";
+        if (!/not verified/i.test(message)) throw error;
+      }
+    }
+    await sendWithFormSubmit(contact);
     return { status: 200, body: { ok: true } };
   } catch (error) {
     return {
