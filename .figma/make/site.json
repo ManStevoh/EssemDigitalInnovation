@@ -1,0 +1,10 @@
+{
+  "description": "Creates professional, brand-consistent landing pages showcasing company identity, logos, and core messaging to enhance brand presence and connectivity.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
