@@ -49,7 +49,7 @@ const services = [
     title: "AI and automations",
     path: "/ai-and-automations",
     image: shopCounter,
-    alt: "A shopkeeper checking orders on a phone behind the counter",
+    alt: "A shopkeeper packing an order from a phone chat and a list on a tablet",
     copy: "AI and workflows that connect your tools, people, and customers, so repetitive work stops living in chats and spreadsheets.",
     points: ["AI for replies, checks, and summaries done by hand", "A map of the process before a tool is chosen", "Connections between the tools you already use"],
   },
@@ -58,7 +58,7 @@ const services = [
     title: "Digitization",
     path: "/digitization",
     image: paperRecords,
-    alt: "Hands sorting a stack of paper records beside a laptop",
+    alt: "Hands setting a paper record aside while a laptop shows the same list",
     copy: "Practical systems that replace paper, scattered files, and manual follow-ups with clearer digital operations.",
     points: ["One system for work that now lives in books and chats", "Records and next steps that do not depend on memory", "Screens staff can use without a long training programme"],
   },
@@ -67,7 +67,7 @@ const services = [
     title: "Online presence",
     path: "/online-presence",
     image: cafeService,
-    alt: "A cafe server speaking with a customer who is using a phone",
+    alt: "A customer in a cafe looking at that cafe on her phone",
     copy: "The digital face of your business: clear, credible, and built to turn interest into enquiries.",
     points: ["A clear position on who you serve and why they should trust you", "Answers for the questions customers already ask", "A path from interest to WhatsApp, a call, or the form"],
   },
@@ -76,7 +76,7 @@ const services = [
     title: "Websites and apps",
     path: "/websites",
     image: websiteDesk,
-    alt: "A designer working at a laptop in a simple office",
+    alt: "A designer reviewing the same product on a laptop and a phone",
     copy: "Custom websites and mobile apps when your operation needs a strong front end or a dedicated product layer.",
     points: ["A public site that explains the business and collects enquiries", "Browser tools for staff or customers", "A phone app when the work leaves the desk"],
   },
@@ -113,7 +113,7 @@ const servicePages = [
     h1: "AI and automations for work that still lives in chats.",
     lead: "AI and workflows that connect your tools, people, and customers, so repetitive work stops living in chats and spreadsheets.",
     image: shopCounter,
-    alt: "A shopkeeper checking orders on a phone behind the counter",
+    alt: "A shopkeeper packing an order from a phone chat and a list on a tablet",
     fit: "Fits when the same checks, replies, or updates are still done by hand in chats and spreadsheets.",
     points: [
       {
@@ -141,7 +141,7 @@ const servicePages = [
     h1: "Digitization that replaces paper and scattered follow-ups.",
     lead: "Practical systems that replace paper, scattered files, and manual follow-ups with clearer digital operations.",
     image: paperRecords,
-    alt: "Hands sorting a stack of paper records beside a laptop",
+    alt: "Hands setting a paper record aside while a laptop shows the same list",
     fit: "Fits when the operation still depends on paper, scattered files, or one person who remembers the next step.",
     points: [
       {
@@ -169,7 +169,7 @@ const servicePages = [
     h1: "Online presence that turns interest into an enquiry.",
     lead: "The digital face of your business: clear, credible, and built to turn interest into enquiries.",
     image: cafeService,
-    alt: "A cafe server speaking with a customer who is using a phone",
+    alt: "A customer in a cafe looking at that cafe on her phone",
     fit: "Fits when people hear about you, then cannot find a clear and credible place to enquire.",
     points: [
       {
@@ -197,7 +197,7 @@ const servicePages = [
     h1: "Websites and apps built around how you operate.",
     lead: "Custom websites and mobile apps when your operation needs a strong front end or a dedicated product layer.",
     image: websiteDesk,
-    alt: "A designer working at a laptop in a simple office",
+    alt: "A designer reviewing the same product on a laptop and a phone",
     fit: "Fits when the public site, or the tool staff and customers use, is missing or no longer matches the operation.",
     points: [
       {
@@ -670,7 +670,7 @@ export default function App() {
       </section>
 
       <section className="band" data-reveal id="approach">
-        <img alt="Two colleagues reviewing a plan in a bright office" src={colleaguesPlanning} />
+        <img alt="Two colleagues reviewing the steps of a system on a laptop" src={colleaguesPlanning} />
         <div className="container band__copy">
           <div className="eyebrow eyebrow--light"><span />How we work</div>
           <h2>A clear path from conversation to live systems.</h2>
